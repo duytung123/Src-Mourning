@@ -1,0 +1,384 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+$deep-purple1: #b39ddb;
+$deep-purple2: #9575cd;
+$purple-lighten-5:#f3e5f5;
+$deep-purple3: #ce93d8;
+$deep-purple4: #4527a0;
+$deep-purple5: #d1c4e9;
+$deep-purple6: #ede7f6;
+
+$indigo: #9fa8da;
+$red: #D90000;
+$red-lighten-4:#ffcdd2;
+$red-lighten-5:#ffebee;
+$label1: #67969A;
+$label2: #AE67A7;
+$label3: #BAA886;
+$purple-accent-1:#ea80fc;
+$purple-accent-2:#e040fb;
+$purple-accent-3:#d500f9;
+$purple-darken-4:#4a148c;
+// common
+* {
+    box-sizing: border-box;
+}
+strong{
+    font-weight: 700;
+}
+::placeholder{
+    color: #909090;
+}
+.w-full{
+    width: 100%;
+}
+.mtb10{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.mt5{
+    margin-top: 5px;
+}
+.mt20{
+    margin-top: 20px;
+}
+.mt50{
+    margin-top: 50px;
+}
+.mt100{
+    margin-top: 100px;
+}
+.mr{
+    margin-right: var(--mr) !important;
+}
+.ml{
+    margin-left: var(--mr) !important;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.5;
+    font-feature-settings: "palt" 1;
+    min-width: 1280px !important;
+    width: 100vw;
+}
+
+.wrap {
+    //width: 100vw;
+    //overflow: hidden;
+}
+
+.main {
+    padding: 10px 0 30px;
+    min-height: calc(100vh - 135px);
+    z-index: -1;
+    //overflow: hidden;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+
+nav .brand-logo {
+    font-size: 1.6rem;
+}
+
+.brand-logo {
+    margin: 0.18em 0 -0.18em;
+}
+
+.page-footer {
+    font-size: 1.2rem;
+}
+.text-normal{
+    font-size: 1rem !important;
+}
+.text-small {
+    font-size: 0.8em !important;
+}
+
+.text-xsmall, .text-xSmall {
+    font-size: 0.6em !important;
+}
+
+.text-large {
+    font-size: 1.3em !important;
+}
+
+.text-xlarge, .text-xLarge {
+    font-size: 1.6em !important;
+}
+
+main {
+    width: 1200px !important;
+}
+
+.bdt-1 {
+    border-top: 10px solid #ffc107;
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+.divider {
+    margin-bottom: 20px;
+}
+
+.card {
+    position: relative;
+    z-index: 1;
+}
+
+.card .card-content .card-title {
+    border-left: 4px solid #000;
+    padding-left: 10px;
+}
+
+.inner-block {
+    padding: 20px 10px 1px;
+    background-color: #f0f0f0;
+
+    .divider {
+        background-color: #ccc;
+    }
+}
+
+.dropdown-content {
+    min-width: 300px;
+
+    li a {
+        white-space: nowrap;
+        color: $deep-purple4;
+
+        &:hover {
+            background-color: $deep-purple6;
+        }
+
+        &.active {
+            background-color: $deep-purple5;
+        }
+    }
+}
+
+.btn, .btn-large, .btn-small {
+    background-color: $deep-purple1;
+}
+
+.btn:hover, .btn-large:hover, .btn-small:hover {
+    background-color: $deep-purple3;
+
+}
+
+.btn:focus, .btn-large:focus, .btn-small:focus, .btn-floating:focus {
+    background-color: $deep-purple2;
+}
+
+#back-button {
+    position: fixed;
+    top: 50px;
+    left: 10px;
+    z-index: 999;
+}
+
+.pagination li.active {
+    background-color: $deep-purple1;
+}
+
+.pagination li a {
+    transition: background-color .3s ease-out;
+}
+
+.pagination li a:hover {
+    background-color: rgba($deep-purple1, 0.3);
+}
+
+.pagination li.disabled a:hover {
+    background-color: transparent;
+}
+
+.card .card-content .card-title {
+    font-weight: 500;
+}
+
+// #search-card
+.check {
+    display: none;
+}
+
+#search-card {
+    position: absolute;
+    right: 0;
+    float: right;
+    max-height: 0;
+    overflow: visible;
+    z-index: 999;
+
+    .tab {
+        height: 110px;
+        text-align: center;
+        padding: 0 20px 0 20px;
+        -ms-writing-mode: tb-rl;
+        writing-mode: vertical-rl;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: #000;
+        letter-spacing: 0.5em;
+        text-indent: 0.5em;
+        background: #fff;
+        border-radius: 10px 0 0 10px;
+    }
+
+    .card-content {
+        display: none;
+    }
+}
+
+#search-card-toggle:checked ~ #search-card {
+    position: static;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    max-height: 50vh;
+
+    .tab {
+        display: none;
+    }
+
+    .card-content {
+        display: block;
+
+        width: 1200px;
+        background: #fff;
+
+    }
+}
+
+label {
+    font-size: 1.2rem;
+    color: #000;
+    font-weight: bold;
+}
+input[type=text]:not(.browser-default):disabled{
+    color: #444;
+}
+input[type=text]:not(:disabled),{
+    background: #fff;
+    color: #000;
+}
+.search-input {
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.caution {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+}
+
+.card .card-content .card-title.search-title {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1;
+    margin-bottom: 0;
+    height: 1em;
+
+    label {
+        cursor: pointer;
+    }
+}
+
+.row strong.col + span,
+.row strong.col + p,
+.row strong.col + .switch{
+    border-left: 1px dotted #999;
+}
+.cyotai{
+    overflow: hidden;
+    span{
+        white-space: nowrap;
+        display: inline-block;
+        transform: scaleX(var(--c));
+        transform-origin: left;
+    }
+}
+
+// pagination
+.pagination li span {
+    color: #444;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px
+}
+
+.pagination li.active span {
+    color: #fff
+}
+
+.pagination li.disabled span {
+    cursor: default;
+    color: #999
+}
+
+
+// provisions
+#provisions{
+    .flex{
+        margin-right: 0 !important;
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 10px;
+        justify-content: flex-start;
+        align-items: center;
+        label,input,span{
+            width: auto!important;
+        }
+        label{
+            flex: 0 0 30%;
+            font-size: 1rem;
+        }
+        input[type=text]{
+            flex: 1 1 auto;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    }
+}
+#edit-buttons{
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    .btn{
+        font-weight: bold;
+        letter-spacing: 0.5rem;
+        text-indent: 0.5rem;
+        display: none;
+        &.active{
+            display: block;
+        }
+    }
+    #edit-regulation-cancel{
+        letter-spacing: 0.1em;
+        text-indent: 0.1em;
+    }
+}

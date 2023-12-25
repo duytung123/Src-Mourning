@@ -1,0 +1,221 @@
+// common
+@for $i from 1 through 100{
+    .w#{$i}{
+        width: #{$i * 1%};
+    }
+}
+@for $i from 1 through 100{
+    .wp#{$i}{
+        width: #{$i}px;
+    }
+}
+@for $i from 1 through 180{
+    .wm#{$i}{
+        width: #{$i}mm;
+    }
+}
+@for $i from 1 through 20 {
+    .p#{$i}{
+        padding-top: #{$i}px;
+        padding-bottom: #{$i}px;
+    }
+}
+@for $i from 1 through 20 {
+    .m#{$i}{
+        margin-top: #{$i}px;
+        margin-bottom: #{$i}px;
+    }
+}
+@for $i from 10 through 100 {
+    .h#{$i}{
+        height: #{$i}px;
+    }
+}
+@for $i from 3 through 20{
+    .f#{$i}{
+        font-size: #{$i}pt;
+    }
+}
+@for $i from 1 through 6{
+    .l#{$i}{
+        height: #{(1.5 * $i - 0.5)}em;
+    }
+}
+@for $i from 1 through 10{
+    $k:($i * 5 + 45);
+    .c#{$k}{
+        transform: scaleX(#{$i * 0.1});
+        transform-origin: center;
+    }
+}
+
+.red{
+    color: #d00;
+}
+.mt1{
+    margin-top:1em;
+}
+.p0{
+  padding: 0;
+}
+// base
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    background: #202020;
+    width: 210mm;
+    height: 297mm;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+body{
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    background: #fff;
+    margin: 0 auto;
+    font-feature-settings: "palt" 1;
+    font-size: 8pt;
+    line-height: 1;
+}
+#content{
+    width: 180mm;
+    height: 267mm;
+    margin: auto;
+    padding-top: 15mm;
+    position: relative;
+}
+// content
+h1{
+    width: 50%;
+    padding: 0.3em;
+    line-height: 1;
+    text-align: center;
+    margin:0 auto;
+    border:1px solid #000;
+    font-weight: normal;
+    font-size: 12pt;
+}
+table{
+    border-left: 0.1mm solid #000;
+    border-top: 0.1mm solid #000;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1em;
+    table-layout: fixed;
+    th,td{
+        border-right: 0.1mm solid #000;
+        border-bottom: 0.1mm solid #000;
+        vertical-align: middle;
+        margin: 0;
+        position: relative;
+    }
+    th{
+        background: #eee;
+        font-weight: normal;
+        white-space: nowrap;
+        line-height: 1;
+    }
+    td{
+        text-align: center;
+        vertical-align: middle;
+        overflow: hidden;
+        padding:0 5px;
+        div{
+            margin: 0;
+            overflow: hidden;
+            min-height: 1em;
+            white-space: normal;
+            word-wrap: break-word;
+            line-height: 0.8;
+        }
+    }
+}
+.tate{
+    //writing-mode: vertical-rl;
+    white-space: normal;
+    line-height: 1;
+    table-layout: fixed;
+}
+.col2{
+    border:none;
+    width: 100%;
+    &::after{
+        content:" ";
+        font-size: 0.01em;
+        clear: both;
+    }
+    .col{
+        width: 89mm;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        border: none;
+        .tate{
+            width: 5.22%;
+        }
+    }
+
+    .left{
+        float:left;
+    }
+    .right{
+        float:right
+    }
+}
+.t4{
+    margin-top: 1em;
+}
+.t5{
+    margin-top: 0;
+    border-top:none;
+}
+.rt{
+    position: absolute;
+    right: 5px;
+    top:20px;
+    line-height: 1;
+    &.t{
+        top:50px;
+    }
+}
+.rb{
+    position: absolute;
+    right: 5px;
+    bottom:5px;
+    line-height: 1;
+}
+.lt{
+    font-size: 5pt;
+    text-align: left;
+    line-height: 1;
+    margin-bottom: -1em;
+}
+.flex{
+    div{
+        display: inline-block;
+        width: 43%;
+    }
+}
+.w-break{
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: left;
+    line-height: 0.8;
+}
+.tal{
+    text-align: left;
+}
+#id{
+    position: absolute;
+    top:15mm;
+    right: 0;
+    line-height: 1;
+    display: block;
+    padding: 0 10px;
+    border-bottom:0.1mm solid #000;
+}
+
