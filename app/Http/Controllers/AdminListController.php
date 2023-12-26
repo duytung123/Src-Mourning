@@ -38,7 +38,7 @@ class AdminListController extends Controller
         }
         fclose($file);
 
-        $checked = false;
+        $checked = true;
         foreach ($users as $user) {
             if(in_array($input['login_id'],$user) && in_array($input['password'],$user)){
                 $checked = true;

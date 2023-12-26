@@ -104,6 +104,10 @@ strong {
   width: auto !important;
 }
 
+.card-content--text{
+    font-size: 32px;
+}
+
 .bg1-2 {
   background: #67969A;
   color: #fff !important;

@@ -3,9 +3,9 @@
 @section('content')
     <section class="section card grey lighten-5">
         <div class="card-content">
-            <h4 class="center-align">登録が完了しました</h4>
+            <h4 class="center-align card-content--text">手配担当者(総務/業務担当等)による受付登録が完了しました</h4>
             <div class="text-xsmall">
-                <p>支部委員長/分会長・所属長へご連絡お願いいたします</p>
+                <p>支部委員長/所属組合役員・所属長へご連絡をお願いいたします。</p>
                 <blockquote class="finish-block">
                     <p>弔事当事者 社員番号</p>
                     <strong class="text-xlarge" id="js_id" data-id="{{ $input['related_employee_no'] }}">{{ $input['related_employee_no'] }}</strong>

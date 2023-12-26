@@ -500,7 +500,7 @@
                         @include('admin.adminStatus')
                     </ul>
                 </div>
-                <div class="divider"></div>
+                {{-- <div class="divider"></div>
                 <div class="row">
                     <strong class="col s5">総務確認</strong>
                     <div class="switch col s7">
@@ -511,7 +511,7 @@
                             確認済み
                         </label>
                     </div>
-                </div>
+                </div> --}}
                 <div class="divider"></div>
                 <div class="row">
                     <strong class="col s5 cyotai"><span style="--c:0.9">支部委員長/分会長</span></strong>
@@ -524,7 +524,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="divider"></div>
+                {{-- <div class="divider"></div>
                 <div class="row">
                     <strong class="col s5">所属長確認</strong>
                     <div class="switch col s7">
@@ -535,7 +535,7 @@
                             確認済み
                         </label>
                     </div>
-                </div>
+                </div> --}}
                 <div class="divider"></div>
                 <div class="row">
                     <strong class="col s4">パスワード</strong>

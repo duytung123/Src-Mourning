@@ -6,6 +6,7 @@
         document.addEventListener('input',(e)=>{
             var valWake= document.querySelector('input[name="wake"]:checked').value;
             var valFuneral= document.querySelector('input[name="funeral"]:checked').value;
+            var valClass = document.getElementById("classification").value;
 
             if(e.target.getAttribute('name') == "wake"){
                 var valWake = e.target.value
@@ -13,7 +14,7 @@
             if(e.target.getAttribute('name') == "funeral"){
                 var valFuneral = e.target.value
             }
-            if(valWake === '1' && valFuneral === '1'){
+            if(valWake === '1' && valFuneral === '1' || valClass === '8'){
                 $('#section-others').addClass('toggle-body')
                 $('#section-others').removeClass('active')
             }else{

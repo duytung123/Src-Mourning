@@ -11,11 +11,10 @@
                 <div class="section text-small">
                     <div class="row res-block">
                         <strong class="col s12 m4">確認</strong>
-                        {{-- {{ var_dump($input) }} --}}
-                        {{-- <p class="col s12 m8 wb">@if($input['status'] == 1) 未確認 @else 確認済み @endif</p> --}}
+                        <p class="col s12 m8 wb">@if($input['status'] == 1) 未確認 @else 確認済み @endif</p>
                     </div>
                     <div class="divider"></div>
-                    {{-- <div class="row res-block">
+                    <div class="row res-block">
                         <strong class="col s12 m4">直属の上司の社員番号</strong>
                         <p class="col s12 m8 wb">{{ $input['superior_employee_no'] }}</p>
                     </div>
@@ -43,7 +42,7 @@
                     <div class="row res-block">
                         <strong class="col s12 m4">所属②</strong>
                         <p class="col s12 m8 wb">{{ $input['superior_member2'] }}</p>
-                    </div> --}}
+                    </div>
                     <div class="divider"></div>
                 </div>
             </div>

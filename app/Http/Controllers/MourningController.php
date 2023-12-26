@@ -625,12 +625,16 @@ class MourningController extends Controller
         }
         $input['password'] = $password;
 
-        if((int)$input['classification'] === 5 || (int)$input['classification'] === 6){
-            $input['status'] = "2";
+        // if((int)$input['classification'] === 5 || (int)$input['classification'] === 6){
+        //     $input['status'] = "2";
 
-        } else {
-            $input['status'] = "1";
-        }
+        // } else {
+        //     $input['status'] = "1";
+        // }
+        // Edit by IVS 2023/12/26
+        // Not check class in Set logic (new request 2023)
+        $input['status'] = "2";
+        // End Edit by IVS 2023/12/26
 
         $request->session()->put("form_input", $input);
 
@@ -649,11 +653,12 @@ class MourningController extends Controller
         }
         $input['id'] = $data->id;
 
-        if((int)$input['classification'] === 5 || (int)$input['classification'] === 6){
-            $request->session()->put("form_input", $input);
-            $setLogic = new SetLogicController();
-            $setLogic->set($request);
-        }
+        // Edit by IVS 2023/12/26
+        // Not check class in Set logic (new request 2023)
+        $request->session()->put("form_input", $input);
+        $setLogic = new SetLogicController();
+        $setLogic->set($request);
+        // End Edit by IVS 2023/12/26
         return redirect()->action([MourningController::class, 'showFinished']);
     }
 
@@ -671,8 +676,6 @@ class MourningController extends Controller
             if ($member->password == $input['password']) {
               $status = $member->status;
                 $request->session()->put(['id' => $member->id]);
-                // dd($status);
-
                 if((int)$status === null || (int)$status === 0 || (int)$status === 1) {
                   return redirect()->action([MourningController::class, 'showEdit']);
                 } else {
@@ -696,7 +699,6 @@ class MourningController extends Controller
         if (!$input) {
             return redirect()->action([MourningController::class, 'index']);
         }
-//        dd($input);
         return view('mourning.finished', ["input" => $input]);
     }
 
@@ -767,7 +769,6 @@ class MourningController extends Controller
         $date['reception_datetime']  = array_key_exists('reception_datetime', $session)? $this->showDatetime($session['reception_datetime']) :'';
 
 //        $session['passed_away_date'] = (!array_key_exists('passed_away_date',$session))?:;
-
         $request->session()->put('form_input', $session);
         return view('mourning.edit', [
             'session' => $session,
@@ -828,7 +829,6 @@ class MourningController extends Controller
      */
     public function showEditConfirm(MourningRequest $request)
     {
-
         $input = $request->session()->get("form_input");
         if (!$input) {
             return redirect()->action([MourningController::class, 'index']);
@@ -871,8 +871,6 @@ class MourningController extends Controller
                     'passedAwayDate' => $date['passed_away_date'],
                     'wakeDate' => $date['wake_date'],
                     'funeralDate' => $date['funeral_date'],
-
-
                 ]
             );
         }
@@ -906,14 +904,15 @@ class MourningController extends Controller
 
         $request->session()->put("form_input", $input);
 
-
         foreach ($this->formItems as $val) {
             if(!array_key_exists($val, $input)){
                 $input[$val] = null;
             }
         }
-
-
+        // Edit by IVS 2023/12/26
+        $setLogic = new SetLogicController();
+        $setLogic->set($request);
+        // End Edit by IVS 2023/12/26
         \DB::beginTransaction();
         try {
             $contactInfo = ContactInfo::find($input['id']);
@@ -977,7 +976,9 @@ class MourningController extends Controller
                 "telegram" => $input["telegram"],
                 "fax_posting" => $input["fax_posting"],
                 "remarks" => $input["remarks"],
-                "status" => $input["status"],
+                // Edit by IVS 2023/12/26
+                "status" => '2',
+                // End Edit by IVS 2023/12/26
                 "update_user" => $input["related_employee_no"],
             ]);
 
@@ -1166,16 +1167,21 @@ class MourningController extends Controller
                     $status = $member->status;
                     $request->session()->put(['id' => $member->id]);
 
-                    if ($status == 1 || $status == 0) {
-                        $request->session()->put("error", "直属の上司の確認が終わっておりません。");
-                    }
+                    // Edit by IVS 2023/12/26
 
-                    if($status === 0 || $status === 1 || $status === "0" || $status === "1") {
-                      return redirect()->action([MourningController::class, 'showManagerLogin']);
-                    } else {
-                      return redirect()->action([MourningController::class, 'showManagerEdit']);
-                    }
+                    // if ($status == 1 || $status == 0) {
+                    //     $request->session()->put("error", "直属の上司の確認が終わっておりません。");
+                    // }
 
+                    // if($status === 0 || $status === 1 || $status === "0" || $status === "1") {
+                    //   return redirect()->action([MourningController::class, 'showManagerLogin']);
+                    // } else {
+                    //   return redirect()->action([MourningController::class, 'showManagerEdit']);
+                    // }
+
+                    // Not check status when login screen manager (New request 2023)
+                    return redirect()->action([MourningController::class, 'showManagerEdit']);
+                    // End Edit by IVS 2023/12/26
 //                     return match ($status) {
 //                         0, 1, '0', '1' => redirect()->action([MourningController::class, 'showManagerLogin']),
 // //                        5, '5' => redirect()->action([MourningController::class, 'checkManager']),

@@ -24,7 +24,7 @@
                             .then(text=>{
                                 if(text){
                                     document.getElementById('js-status-str').innerHTML = $STATUS_ARRAY[val];
-                                    location.reload();
+                                    // location.reload();
                                 }
                             })
 

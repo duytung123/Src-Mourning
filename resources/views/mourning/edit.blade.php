@@ -4,9 +4,9 @@
     <div class="section row text-xsmall">
         <div class="col s12">
           <div class="card-panel teal lighten-5">
-          <span class="teal-text text-darken-2">
+          <h5 class="teal-text text-darken-2">
             直属の上司→職場担当者（上司等）
-        </span>
+        </h5>
             </div>
         </div>
     </div>
@@ -883,20 +883,20 @@
                 </div>
             </div>
         </section>
-        <!-- <section class="section center-align">
+        <section class="section center-align">
             <div class="">
                 <button type="submit" class="waves-effect waves-light btn btn-large deep-purple lighten-4 grey-text text-darken-2" role="button">
                     【本人(弔事当事者)】入力内容確認<i class="material-icons right">chevron_right</i></button>
             </div>
-        </section> -->
+        </section>
     </form>
 
     <div class="section row text-xsmall mt100">
         <div class="col s12">
             <div class="card-panel teal lighten-5">
-        <span class="teal-text text-darken-2">
+        <h5 class="teal-text text-darken-2">
             直属の上司→職場担当者（上司等）
-        </span>
+        </h5>
             </div>
         </div>
     </div>
@@ -914,14 +914,14 @@
         <input type="hidden" name="classification" value="{{ $session['classification'] }}">
         <input type="hidden" name="passed_away_relationship" value="{{ $session['passed_away_relationship'] }}">
         <input type="hidden" name="chief_mourner" value="{{ $session['chief_mourner'] }}" data-true="0">
-        <section class="section center-align">
+        {{-- <section class="section center-align">
             <div class="row">
-                
+
                 <button type="submit" class="col s12 waves-effect waves-light btn btn-large deep-purple lighten-4 grey-text text-darken-2" role="button">
                     修正内容確認<i class="material-icons right">chevron_right</i></button>
                     <input type="hidden" name="status" value="2" >
             </div>
-        </section>
+        </section> --}}
         <!-- 直属の上司確認 -->
         {{-- <section class="section card grey lighten-5" id="js_create">
             <div class="card-content">
