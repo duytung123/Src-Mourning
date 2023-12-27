@@ -7,14 +7,20 @@
             var valWake= document.querySelector('input[name="wake"]:checked').value;
             var valFuneral= document.querySelector('input[name="funeral"]:checked').value;
             var valClass = document.getElementById("classification").value;
-
+            var valRelationship = document.getElementById("passed_away_relationship").value;
+            var valChiefMourner= document.querySelector('input[name="chief_mourner"]:checked').value;
+            console.log();
             if(e.target.getAttribute('name') == "wake"){
                 var valWake = e.target.value
             }
             if(e.target.getAttribute('name') == "funeral"){
                 var valFuneral = e.target.value
             }
-            if(valWake === '1' && valFuneral === '1' || valClass === '8'){
+            if(e.target.getAttribute('name') == "chief_mourner"){
+                var valChiefMourner = e.target.value
+            }
+            if( (valWake === '1' && valFuneral === '1') || (valClass === '8' && valChiefMourner === '1' && valRelationship === '7') || (valRelationship === '7' && valChiefMourner === '0') || (valRelationship === '7' && valChiefMourner === '1')){
+                console.log("ccc");
                 $('#section-others').addClass('toggle-body')
                 $('#section-others').removeClass('active')
             }else{

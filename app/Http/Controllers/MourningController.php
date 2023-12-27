@@ -10,6 +10,10 @@ use App\Models\ContactInfo;
 use App\Models\PassedAwayRelationship;
 use App\Models\Status;
 use App\Http\Requests\MourningRequest;
+use Mail;
+use PDF;
+use App\Mail\registerInformationMail;
+use App\Mail\finalMail;
 //use Illuminate\Http\Response;
 //use Illuminate\Support\Facades\App;
 //use Illuminate\Support\Facades\DB;
@@ -633,10 +637,18 @@ class MourningController extends Controller
         // }
         // Edit by IVS 2023/12/26
         // Not check class in Set logic (new request 2023)
+        // Send mail with id and password
         $input['status'] = "2";
-        // End Edit by IVS 2023/12/26
 
         $request->session()->put("form_input", $input);
+
+        $mailData = [
+            'password' => $password,
+            'related_employee_no' => $input['related_employee_no']
+        ];
+        $listMail = ['tungnguyen1399@gmail.com','huy37140@gmail.com'];
+        Mail::to($listMail)->send(new registerInformationMail($mailData));
+        // End Edit by IVS 2023/12/26
 
         \DB::beginTransaction();
         try {
@@ -1724,6 +1736,7 @@ class MourningController extends Controller
         $input['status'] = 5;
 
 
+
         $request->session()->put("form_input", $input);
         \DB::beginTransaction();
         try {
@@ -1734,6 +1747,48 @@ class MourningController extends Controller
                 "update_user" => $input["update_user"],
             ]);
             $contactInfo->save();
+
+
+
+            //    session()->flush();
+            $data = ContactInfo::find(($input['id']));
+
+            $val['reception_datetime'] = $this->showDatetime($data['reception_datetime']);
+            $val['classification'] = $this->classifications()[$data['classification']];
+            $val['company'] = $this->companies()[$data['company']];
+            $val['passed_away_relationship'] = $this->passedAwayRelationship()[$data['passed_away_relationship']];
+            if($data['chief_mourner_relationship']){
+                $val['chief_mourner_relationship'] = $this->chiefMournerRelationship()[$data['chief_mourner_relationship']];
+            } else {
+                $val['chief_mourner_relationship'] ='';
+            }
+
+            $val['passed_away_date'] = $this->showDate($data['passed_away_date']);
+            if($data['wake_date']){
+                $val['wake_date'] = $this->showDate($data['wake_date']);
+            } else {
+                $val['wake_date'] = '';
+            }
+            if($data['funeral_date']){
+                $val['funeral_date'] = $this->showDate($data['funeral_date']);
+            } else {
+                $val['funeral_date'] = '';
+            }
+
+            $pdf = PDF::loadView('pdfOutput', [
+                'data'=>$data,
+                'val'=>$val,
+                ]);
+            // Send mail attach file PDF
+            $mailData = [
+                'pdf' => $pdf,
+                'contactInfo' => $contactInfo
+            ];
+
+            $listMail = ['tungnguyen1399@gmail.com','huy37140@gmail.com'];
+           $a =  Mail::to($listMail)->send(new finalMail($mailData));
+           dd($a);
+            // End send mail
             \DB::commit();
         } catch (\Throwable $exception) {
             \DB::rollback();

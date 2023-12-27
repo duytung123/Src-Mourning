@@ -6,5 +6,9 @@
     "migu": {
         "normal": "C:\\xampp\\htdocs\\mourning\\storage\\fonts\/migu_normal_47afcf2cc57615e08de44c0306192dea",
         "bold": "migu_bold_08b2d73df95ab49ccd5388efb7738404"
+    },
+    "notosanscjkjp": {
+        "normal": "C:\\xampp\\htdocs\\mourning\\storage\\fonts\/notosanscjkjp_normal_6f1b0bccc05fdf698d83ba45cfd7745d",
+        "bold": "notosanscjkjp_bold_77158e76e8ccfd612ecda3583ddb3bc9"
     }
 }

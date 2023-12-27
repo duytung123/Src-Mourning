@@ -6,7 +6,8 @@
       <h4 class="center-align">登録が完了しました</h4>
       <div class="">
         <blockquote class="finish-block mt50 text-xsmall">
-          <p>弔事当事者 社員番号</p>
+          <p>手配担当者による最終登録が完了しました。</p>
+          <p>丸井グループ総務部総務課とマルイグループ福祉会にメール通知されます。</p>
           <strong class="text-xlarge" id="js_id" data-id="{{ $input['related_employee_no'] }}">{{ $input['related_employee_no'] }}</strong>
         </blockquote>
         <blockquote class="finish-block text-xsmall">
