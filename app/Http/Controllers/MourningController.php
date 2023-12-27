@@ -1786,8 +1786,7 @@ class MourningController extends Controller
             ];
 
             $listMail = ['tungnguyen1399@gmail.com','huy37140@gmail.com'];
-           $a =  Mail::to($listMail)->send(new finalMail($mailData));
-           dd($a);
+            Mail::to($listMail)->send(new finalMail($mailData));
             // End send mail
             \DB::commit();
         } catch (\Throwable $exception) {
