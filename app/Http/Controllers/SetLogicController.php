@@ -394,6 +394,7 @@ class SetLogicController extends Controller
                 "company_telegram1" => $input["company_telegram1"],
                 "company_telegram2" => $input["company_telegram2"],
                 "company_floral_tribute1" => $input["company_floral_tribute1"],
+                "company_floral_tribute2" => $input["company_floral_tribute2"],
                 "company_condolence_money1" => $input["company_condolence_money1"],
                 "company_condolence_money2" => $input["company_condolence_money2"],
                 "company_attend1" => $input["company_attend1"],

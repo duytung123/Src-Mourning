@@ -210,9 +210,9 @@
         <tr>
             <th class="" rowspan="2"><div>会社規定分</div></th>
             <td class="w25 l3"><div class="lt">差出人</div><div>{{$data['company_name1']}}</div></td>
-            <td class="w5"><div class="f10">@if((int)$data['company_telegram1'] == 0) − @else ○ @endif</div></td>
+            <td class="w5"><div class="f10">@if((int)$data['company_telegram1'] == 0) ー @else ○ @endif</div></td>
             <td class="w25"><div class="lt">差出人</div><div>{{$data['company_name1']}}</div></td>
-            <td class="w5"><div class="f10">@if((int)$data['social_floral_tribute1'] == 0) − @else ○ @endif</div></td>
+            <td class="w5"><div class="f10">@if((int)$data['company_floral_tribute1'] == 0) ー @else ○ @endif</div></td>
             <td class="w30">
                 <div class="lt">差出人</div>
                 <div>{{$data['company_name1']}}</div>
@@ -221,9 +221,9 @@
         </tr>
         <tr>
             <td class="w25 l3"><div class="lt">差出人</div><div>{{$data['company_name2']}}</div></td>
-            <td class="w5"><div class="f10">@if((int)$data['company_telegram2'] == 0) − @else ○ @endif</div></td>
+            <td class="w5"><div class="f10">@if((int)$data['company_telegram2'] == 0) ー @else ○ @endif</div></td>
             <td class="w25"><div class="lt">差出人</div><div>{{$data['company_name2']}}</div></td>
-            <td class="w5"><div class="f10">@if((int)$data['company_floral_tribute2'] == 0) − @else ○ @endif</div></td>
+            <td class="w5"><div class="f10">@if((int)$data['company_floral_tribute2'] == 0) ー @else ○ @endif</div></td>
             <td class="w30">
                 <div class="lt">差出人</div>
                 <div>{{$data['company_name2']}}</div>

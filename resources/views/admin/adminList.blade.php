@@ -32,7 +32,7 @@
                             <option value="5" @if((int)$status == 5) selected @endif>{{ $statusArray[5] }}</option>
                         </select>
                     </div>
-                    <label for="general_affairs_name" class="col s1 center-align"><b>総務<br>社員番号</b></label>
+                    <label for="general_affairs_name" class="col s1 center-align"><b>手配<br>担当者社員番号</b></label>
                     <input class="col s2 zen2half" type="text" id="general_affairs_employee_no" name="general_affairs_employee_no" pattern="[0-9]*" maxlength="7" value="@if(isset($soumu)){{ $soumu }}@endif">
                     <div class="center-align col s3">
                         <button type="reset" class="btn col s4 push-s1 white black-text">クリア</button>
@@ -50,10 +50,12 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>社員番号</th>
+                        <th>弔事当事者の社員番号</th>
+                        <th>弔事当事者</th>
                         <th>ﾊﾟｽﾜｰﾄﾞ</th>
+                        <th>社内親族</th>
+                          {{-- family --}}
                         <th>状態</th>
-                        <th>お名前</th>
                         <th>登録日時</th>
                         <th>完了日時</th>
                         <th>PDF</th>
@@ -61,17 +63,19 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     @foreach($lists as $list)
                         <tr>
                             <td>{{ $list['id'] }}</td>
                             <td>{{ $list['related_employee_no'] }}</td>
-                            {{-- <td>{{ $list['password']}}</td> --}}
-                            <td>{{ $statusArray[$list['status']] }}</td>
                             <td>
                                 <ruby>{{ $list['related_name'] }}
                                     <rt>{{ $list['related_kana'] }}</rt>
                                 </ruby>
                             </td>
+                            <td>{{ $list['password'] }}</td>
+                            <td> @if($list['inlaws'] && $list['inlaws'] === 1) あり @else なし @endif</td>
+                            <td>{{ $statusArray[$list['status']] }}</td>
                             <td>{{ $list['created_at'] }}</td>
                             <td>@if((int)$list['final_confirmation']==1)
                                     {{$list['updated_at']}}

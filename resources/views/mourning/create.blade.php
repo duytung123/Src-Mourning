@@ -305,11 +305,11 @@
                         <p class="col s12">社内親族<sup><i class="tiny material-icons">lens</i></sup></p>
                         <label class="col">
                             <input type="radio" name="inlaws" class="is-toggle" data-tgt="js_inlaws" data-state="false" value="0" required @if(old('inlaws') =='0' || $session['inlaws'] == '0' || (old('inlaws') !='1' && $session['inlaws'] != '1')) checked @endif>
-                            <span>社内親族がいる</span>
+                            <span>社内親族はいない</span>
                         </label>
                         <label class="col">
                             <input type="radio" name="inlaws" class="is-toggle" data-tgt="js_inlaws" data-state="true" value="1" @if(old('inlaws') == '1' || $session['inlaws'] == '1') checked @endif>
-                            <span>社内親族はいない</span>
+                            <span>社内親族がいる</span>
                         </label>
                         @if ($errors->has('inlaws'))
                             <div class="card section teal lighten-4 col s12">
@@ -557,7 +557,7 @@
                         </label>
                         <div class="col s12 caption text-xsmall">※逝去者が「別居祖父母・義兄弟姉妹」の場合は原則として「いいえ」を選択してください</div>
                     </div>
-                    
+
                 </div>
             </div>
         </section>
@@ -696,7 +696,7 @@
                                     </div>
                                 </div>
                             @endif
-                      
+
                     </div>
                 </div>
             </div>
@@ -734,8 +734,8 @@
                                 </div>
                             @endif
                             <div class="input-field col s6 m3">
-                                <input id="funeral_time_end" name="funeral_time_end" type="time" class="validate required" @if(old('funeral_time_end')) value="old('funeral_time_end')" @endif @if($session['funeral_time_end']) value="{{$session['funeral_time_end']}}" @endif>
-                                <label for="funeral_time_end">告別式の終了時刻<sup><i class="tiny material-icons">lens</i></sup></label>
+                                <input id="funeral_time_end" name="funeral_time_end" type="time" class="validate" @if(old('funeral_time_end')) value="old('funeral_time_end')" @endif @if($session['funeral_time_end']) value="{{$session['funeral_time_end']}}" @endif>
+                                <label for="funeral_time_end">告別式の終了時刻</label>
                             </div>
                             @if ($errors->has('funeral_time_end'))
                                 <div class="card section teal lighten-4 col s12">
@@ -859,7 +859,7 @@
                             </div>
                         </div>
                         <input id="funeral_attendees" name="funeral_attendees" type="hidden" class="validate">
-                   
+
                     <!-- ▲▲告別式を行う場合の表示▲▲ -->
                 </div>
             </div>

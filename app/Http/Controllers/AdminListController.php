@@ -32,8 +32,8 @@ class AdminListController extends Controller
 
         $users = [];
         while (($col = fgetcsv($file))!== FALSE ) {
-            if (($col[1] && $col[3])) {
-                $users[] = [$col[1],$col[3]];
+            if (($col[1] && $col[4])) {
+                $users[] = [$col[1],$col[4]];
             }
         }
         fclose($file);
@@ -45,7 +45,7 @@ class AdminListController extends Controller
                 $request->session()->put("error", "");
             }
         }
-        if($checked){
+        if($checked == true){
             $request->session()->put("error", "");
             if(ContactInfo::count()){
                 $instance = new ContactInfo();

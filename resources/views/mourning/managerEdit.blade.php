@@ -728,19 +728,19 @@
                             </div>
 
                             <div class="row">
-                                <label for="company_telegram1" class="col s4"><strong>弔電<sup><i class="tiny material-icons">lens</i></sup></strong></label>
+                                <label for="company_telegram1" class="col s4"><strong>弔電</strong></label>
                                 <input class="col s1 zen2half" type="text" name="company_telegram1" id="company_telegram1" form="general_affairs" placeholder="0" required maxlength="2" pattern="[0-9]" value="{{ $session['company_telegram1'] }}" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
                                 <strong class="col s7 wb deep-purple-text">通</strong>
                                 <div class="divider col s10 push-s1"></div>
                             </div>
                             <div class="row">
-                                <label for="company_floral_tribute1" class="col s4"><strong>供花<sup><i class="tiny material-icons">lens</i></sup></strong></label>
+                                <label for="company_floral_tribute1" class="col s4"><strong>供花</strong></label>
                                 <input class="col s1 zen2half" type="text" name="company_floral_tribute1" id="company_floral_tribute1" form="general_affairs" placeholder="0" required maxlength="2" pattern="[0-9]" value="{{ $session['company_floral_tribute1'] }}" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
                                 <strong class="col s7 wb deep-purple-text">本</strong>
                                 <div class="divider col s10 push-s1"></div>
                             </div>
                             <div class="row">
-                                <label for="company_condolence_money1" class="col s4"><strong>弔慰金<sup><i class="tiny material-icons">lens</i></sup></strong></label>
+                                <label for="company_condolence_money1" class="col s4"><strong>弔慰金</strong></label>
                                 <input class="col s1 zen2half" type="text" name="company_condolence_money1" id="company_condolence_money1" form="general_affairs" placeholder="0" required maxlength="2" pattern="[0-9]*" value="{{ (int)$session['company_condolence_money1'] }}" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
                                 <strong class="col s7 wb deep-purple-text">万円</strong>
                             </div>
@@ -771,21 +771,21 @@
                                 @endif
                             </div>
                             <div class="row">
-                                <label class="col s4" for="company_telegram2"><strong>弔電</strong><sup><i class="tiny material-icons">lens</i></sup></label>
+                                <label class="col s4" for="company_telegram2"><strong>弔電</strong></label>
                                 <input class="col s1 zen2half" type="text" name="company_telegram2" id="company_telegram2" form="general_affairs" placeholder="0" required maxlength="2" pattern="[0-9]" value="{{ $session['company_telegram2'] }}" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
                                 <strong class="col s7 wb deep-purple-text">通</strong>
                                 <div class="divider col s10 push-s1"></div>
                             </div>
 
                             <div class="row">
-                                <label for="company_floral_tribute2" class="col s4"><strong>供花<sup><i class="tiny material-icons">lens</i></sup></strong></label>
+                                <label for="company_floral_tribute2" class="col s4"><strong>供花</strong></label>
                                 <input class="col s1 zen2half" type="text" name="company_floral_tribute2" id="company_floral_tribute2" form="general_affairs" placeholder="0" required maxlength="2" pattern="[0-9]" value="{{ $session['company_floral_tribute2'] }}" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
                                 <strong class="col s7 wb deep-purple-text">本</strong>
                                 <div class="divider col s10 push-s1"></div>
                             </div>
 
                             <div class="row">
-                                <label class="col s4" for="company_condolence_money2"><strong>弔慰金</strong><sup><i class="tiny material-icons">lens</i></sup></label>
+                                <label class="col s4" for="company_condolence_money2"><strong>弔慰金</strong></label>
                                 <input class="col s1 zen2half" type="text" name="company_condolence_money2" id="company_condolence_money2" form="general_affairs" placeholder="0" required maxlength="2" pattern="[0-9]*" value="{{ $session['company_condolence_money2'] }}" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
                                 <strong class="col s7 wb deep-purple-text">万円</strong>
                             </div>

@@ -1,15 +1,17 @@
 (() => {
     window.addEventListener( 'load', () => {
-
         // Edit by IVS 2023/12/25
+        // set  本人 is disable
+        document.querySelector('select[id="passed_away_relationship"] option[value="1"]').disabled = true;
+
         // Check value of wake and Funeral , if both are disabled then hidden 弔問・供花・弔電について
         document.addEventListener('input',(e)=>{
             var valWake= document.querySelector('input[name="wake"]:checked').value;
             var valFuneral= document.querySelector('input[name="funeral"]:checked').value;
             var valClass = document.getElementById("classification").value;
             var valRelationship = document.getElementById("passed_away_relationship").value;
-            var valChiefMourner= document.querySelector('input[name="chief_mourner"]:checked').value;
-            console.log();
+            var valEntrant= document.querySelector('input[name="entrant"]:checked').value;
+
             if(e.target.getAttribute('name') == "wake"){
                 var valWake = e.target.value
             }
@@ -17,16 +19,27 @@
                 var valFuneral = e.target.value
             }
             if(e.target.getAttribute('name') == "chief_mourner"){
+                var valChiefMourner= document.querySelector('input[name="chief_mourner"]:checked').value;
                 var valChiefMourner = e.target.value
             }
+            if(e.target.getAttribute('name') == "entrant"){
+                var valEntrant = e.target.value
+            }
             if( (valWake === '1' && valFuneral === '1') || (valClass === '8' && valChiefMourner === '1' && valRelationship === '7') || (valRelationship === '7' && valChiefMourner === '0') || (valRelationship === '7' && valChiefMourner === '1')){
-                console.log("ccc");
                 $('#section-others').addClass('toggle-body')
                 $('#section-others').removeClass('active')
             }else{
                 $('#section-others').addClass('active')
             }
+            // toggle for  本人(弔事当事者)との続柄
+            if (valEntrant === '1') {
+                document.querySelector('select[id="passed_away_relationship"] option[value="1"]').disabled = false;
+            }
+            else{
+                document.querySelector('select[id="passed_away_relationship"] option[value="1"]').disabled = true;
+            }
         });
+
         // End Edit by IVS 2023/12/25
 
         // 全角カタカナに変換
@@ -553,19 +566,21 @@
         const funeralSelected = document.querySelector('input[name=funeral]:checked')
         return funeralSelected.value;
     }
-    const refusal = (type)=>{
-        const isFloral = document.querySelector('input[name=floral_tribute][value="2"]'),
-            isTelegram = document.querySelector('input[name=telegram][value="2"]');
-        if(type){
-            isFloral.checked = false;
-            isTelegram.checked = false;
-            isFloral.setAttribute('disabled','')
-            isTelegram.setAttribute('disabled','')
-        } else {
-            isFloral.removeAttribute('disabled')
-            isTelegram.removeAttribute('disabled')
-        }
-    }
+    // Edit by IVS 2023/28/13
+    // const refusal = (type)=>{
+    //     const isFloral = document.querySelector('input[name=floral_tribute][value="2"]'),
+    //         isTelegram = document.querySelector('input[name=telegram][value="2"]');
+    //     if(type){
+    //         isFloral.checked = false;
+    //         isTelegram.checked = false;
+    //         isFloral.setAttribute('disabled','')
+    //         isTelegram.setAttribute('disabled','')
+    //     } else {
+    //         isFloral.removeAttribute('disabled')
+    //         isTelegram.removeAttribute('disabled')
+    //     }
+    // }
+    // End Edit by IVS 2023/28/13
     if(jsWake && jsFuneral){
         jsWake.forEach((el)=>{
             el.addEventListener('change',(ev)=>{
