@@ -487,7 +487,7 @@
     <div class="col s4">
         <div class="card bdt-1">
             <div class="card-content">
-                <div class="row">
+                {{-- <div class="row">
                     <strong class="col s4">状態</strong>
                     <span class="col s5" id="js-status-str">@if($statusArray[$data['status']] == '最終確認済み')
                             完了
@@ -499,7 +499,7 @@
                     <ul id='dropdown1' class='dropdown-content'>
                         @include('admin.adminStatus')
                     </ul>
-                </div>
+                </div> --}}
                 {{-- <div class="divider"></div>
                 <div class="row">
                     <strong class="col s5">総務確認</strong>

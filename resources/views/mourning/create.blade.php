@@ -302,7 +302,6 @@
                 <div class="divider"></div>
                 <div class="section">
                     <div class="row">
-                        <p class="col s12">社内親族<sup><i class="tiny material-icons">lens</i></sup></p>
                         <label class="col">
                             <input type="radio" name="inlaws" class="is-toggle" data-tgt="js_inlaws" data-state="false" value="0" required @if(old('inlaws') =='0' || $session['inlaws'] == '0' || (old('inlaws') !='1' && $session['inlaws'] != '1')) checked @endif>
                             <span>社内親族はいない</span>
@@ -434,7 +433,6 @@
                 <div class="divider"></div>
                 <div class="section">
                     <div class="row">
-                        <p class="col s12">通夜を行う<sup><i class="tiny material-icons">lens</i></sup></p>
                         <label class="col">
                             <input type="radio" name="wake" class="is-toggle" data-tgt="js_wake" data-state="true" value="0" required @if(old('wake') == '0' || $session['wake'] == '0' || (old('wake') != '1' && $session['wake'] != '1')) checked @endif>
                             <span>通夜を行う</span>
@@ -457,6 +455,7 @@
                 </div>
             </div>
         </section>
+        <!-- その他-->
 
         <!-- 告別式-->
         <section class="section card grey lighten-5">
@@ -465,7 +464,6 @@
                 <div class="divider"></div>
                 <div class="section">
                     <div class="row">
-                        <p class="col s12">告別式を行う<sup><i class="tiny material-icons">lens</i></sup></p>
                         <label class="col">
                             <input type="radio" name="funeral" class="is-toggle" data-tgt="js_funeral" data-state="true" value="0" required @if(old('funeral') == '0' || $session['funeral'] == '0' || (old('funeral') != '1' && $session['funeral'] != '1')) checked @endif>
                             <span>告別式を行う</span>
@@ -487,7 +485,6 @@
         </section>
         <!-- 喪主 -->
 
-        <!-- その他-->
         <section id="section-others" class="section card grey lighten-5">
             <div class="card-content">
                 <span class="card-title">弔問・供花・弔電について</span>

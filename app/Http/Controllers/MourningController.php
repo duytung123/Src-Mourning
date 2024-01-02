@@ -638,7 +638,7 @@ class MourningController extends Controller
         // Edit by IVS 2023/12/26
         // Not check class in Set logic (new request 2023)
         // Send mail with id and password
-        $input['status'] = "2";
+        $input['status'] = "1";
 
         $request->session()->put("form_input", $input);
 
@@ -647,7 +647,7 @@ class MourningController extends Controller
             'related_employee_no' => $input['related_employee_no']
         ];
         $listMail = ['tungnguyen1399@gmail.com','huy37140@gmail.com'];
-        Mail::to($listMail)->send(new registerInformationMail($mailData));
+        // Mail::to($listMail)->send(new registerInformationMail($mailData));
         // End Edit by IVS 2023/12/26
 
         \DB::beginTransaction();

@@ -2,7 +2,10 @@
     window.addEventListener( 'load', () => {
         // Edit by IVS 2023/12/25
         // set  本人 is disable
-        document.querySelector('select[id="passed_away_relationship"] option[value="1"]').disabled = true;
+        var selectPass = document.querySelector('select[id="passed_away_relationship"] option[value="1"]');
+        if(selectPass) {
+            selectPass.disabled = true;
+        }
 
         // Check value of wake and Funeral , if both are disabled then hidden 弔問・供花・弔電について
         document.addEventListener('input',(e)=>{
@@ -25,7 +28,7 @@
             if(e.target.getAttribute('name') == "entrant"){
                 var valEntrant = e.target.value
             }
-            if( (valWake === '1' && valFuneral === '1') || (valClass === '8' && valChiefMourner === '1' && valRelationship === '7') || (valRelationship === '7' && valChiefMourner === '0') || (valRelationship === '7' && valChiefMourner === '1')){
+            if( (valWake === '1' && valFuneral === '1') || (valEntrant ==='0' && valClass === '8')  || (valEntrant === '0' && valRelationship === '7') || (valRelationship === '7' && valChiefMourner === '0') || (valRelationship === '7' && valChiefMourner === '1')){
                 $('#section-others').addClass('toggle-body')
                 $('#section-others').removeClass('active')
             }else{
