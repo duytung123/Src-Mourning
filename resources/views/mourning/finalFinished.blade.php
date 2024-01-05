@@ -3,11 +3,11 @@
 @section('content')
   <section class="section card grey lighten-5">
     <div class="card-content">
-      <h4 class="center-align">登録が完了しました</h4>
+      <h5 class="center-align">手配担当者による最終登録が完了しました。</h5>
+      <h5 class="center-align">丸井グループ総務部総務課とマルイグループ福祉会にメール通知されます。</h5>
       <div class="">
         <blockquote class="finish-block mt50 text-xsmall">
-          <p>手配担当者による最終登録が完了しました。</p>
-          <p>丸井グループ総務部総務課とマルイグループ福祉会にメール通知されます。</p>
+          <p>弔事当事者 社員番号</p>
           <strong class="text-xlarge" id="js_id" data-id="{{ $input['related_employee_no'] }}">{{ $input['related_employee_no'] }}</strong>
         </blockquote>
         <blockquote class="finish-block text-xsmall">

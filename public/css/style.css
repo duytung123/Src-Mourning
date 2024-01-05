@@ -87,21 +87,28 @@ strong {
   padding: 2px 5px;
   width: auto !important;
 }
+#bg1_1{
+    background: #22650c;
+    color: #fff !important;
+    display: inline-block;
+    padding: 2px 5px;
+    width: auto !important;
+}
 
 .bg2 {
-  background: #AE67A7;
-  color: #fff !important;
-  display: inline-block;
-  padding: 2px 5px;
-  width: auto !important;
+    background: #880c7b;
+    color: #fff !important;
+    display: inline-block;
+    padding: 2px 5px;
+    width: auto !important;
 }
 
 .bg3 {
-  background: #BAA886;
-  color: #fff !important;
-  display: inline-block;
-  padding: 2px 5px;
-  width: auto !important;
+    background: #b55c14;
+    color: #fff !important;
+    display: inline-block;
+    padding: 2px 5px;
+    width: auto !important;
 }
 
 .card-content--text{

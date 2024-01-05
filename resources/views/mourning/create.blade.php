@@ -524,14 +524,6 @@
                             <span>弔電を辞退する</span>
                         </label>
                     </div>
-                    <div class="row">
-                        <label for="remarks" class="col s12 label">備考</label>
-                        <div class="col s12">
-                            <textarea class="text-small" name="remarks" id="remarks" rows="5">@if(old('remarks'))old('remarks')@elseif($session['remarks']){{$session['remarks']}}@endif</textarea>
-                        </div>
-
-                    </div>
-
                 </div>
             </div>
         </section>
@@ -911,6 +903,20 @@
             </div>
         </section>
 
+        <section id="section-others" class="section card grey lighten-5">
+            <div class="card-content">
+                <span class="card-title">その他</span>
+                <div class="divider"></div>
+                <div class="section">
+                    <div class="row">
+                        <label for="remarks" class="col s12 label">備考</label>
+                        <div class="col s12">
+                            <textarea class="text-small" name="remarks" id="remarks" rows="5">@if(old('remarks'))old('remarks')@elseif($session['remarks']){{$session['remarks']}}@endif</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section class="section center-align">
             <div class="">

@@ -39,8 +39,8 @@ class SetLogicController extends Controller
         else
         {
             // 差出人名
-            $input['social_name1'] = '株式会社丸井グループ代表取締役';
-            $input['social_name2'] = 'マルイグループユニオン中央執行委員長';
+            $input['social_name1'] = '株式会社丸井グループ代表取締役 青井 浩';
+            $input['social_name2'] = 'マルイグループユニオン中央執行委員長 金田 素樹';
             $input['social_name3'] = 'マルイグループ福祉会';
             $input['social_telegram1_flg'] = 0;
             $input['social_telegram2_flg'] = 0;
@@ -243,6 +243,7 @@ class SetLogicController extends Controller
 
             // 供花
             $input['company_floral_tribute1_flg'] = 0;
+            $input['company_floral_tribute2_flg'] = 0;
 
             switch ((int)$input['floral_tribute']) {
                 case 1:
@@ -266,6 +267,10 @@ class SetLogicController extends Controller
                 $input['company_telegram2_flg'] = 0;
                 $input['company_telegram1'] = 1;
                 $input['company_telegram2'] = 1;
+            }
+            if((int)$input['floral_tribute'] == 1 && (int)$input['telegram'] == 1){
+                $input['company_telegram1_flg'] = 1;
+                $input['company_telegram2_flg'] = 1;
             }
             // End edit by IVS 2023/12/01
             if ((int)$input['chief_mourner'] == 0 && (int)$input['passed_away_relationship'] == 1) {
@@ -399,10 +404,10 @@ class SetLogicController extends Controller
                 "company_condolence_money2" => $input["company_condolence_money2"],
                 "company_attend1" => $input["company_attend1"],
                 "company_attend2" => $input["company_attend2"],
-
                 'company_telegram1_flg' => $input["company_telegram1_flg"],
                 'company_telegram2_flg' => $input["company_telegram2_flg"],
                 'company_floral_tribute1_flg' => $input["company_floral_tribute1_flg"],
+                'company_floral_tribute2_flg' => $input["company_floral_tribute2_flg"],
                 'company_condolence_money1_flg' => $input["company_condolence_money1_flg"],
                 'company_condolence_money2_flg' => $input["company_condolence_money2_flg"],
 

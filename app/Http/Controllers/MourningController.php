@@ -629,13 +629,14 @@ class MourningController extends Controller
         }
         $input['password'] = $password;
 
+        // Edit by IVS 2023/12/26
         // if((int)$input['classification'] === 5 || (int)$input['classification'] === 6){
         //     $input['status'] = "2";
 
         // } else {
         //     $input['status'] = "1";
         // }
-        // Edit by IVS 2023/12/26
+
         // Not check class in Set logic (new request 2023)
         // Send mail with id and password
         $input['status'] = "1";
@@ -665,7 +666,6 @@ class MourningController extends Controller
         }
         $input['id'] = $data->id;
 
-        // Edit by IVS 2023/12/26
         // Not check class in Set logic (new request 2023)
         $request->session()->put("form_input", $input);
         $setLogic = new SetLogicController();
@@ -1315,7 +1315,6 @@ class MourningController extends Controller
     {
         $input = $request->session()->get("form_input");
 //        $request->flash();
-    //    dd($input);
         if (!$input) {
             return redirect()->action([MourningController::class, 'showManagerLogin']);
         } else {
@@ -1361,16 +1360,22 @@ class MourningController extends Controller
         $input = $request->session()->get("form_input");
 
         // Edit by IVS 2023/12/01
-        if ($input['company_attend1'] == 2) {
-            $input['company_telegram1_flg'] = "1";
-        }else{
-            $input['company_telegram1_flg'] = "0";
-        }
+        if((int)$input['classification'] != 7 || (int)$input['classification'] != 8){
+            if ($input['company_attend1'] == 2) {
+                $input['company_telegram1_flg'] = "1";
+            }else{
+                $input['company_telegram1_flg'] = "0";
+            }
 
-        if ($input['company_attend2'] == 2) {
+            if ($input['company_attend2'] == 2) {
+                $input['company_telegram2_flg'] = "1";
+            }else{
+                $input['company_telegram2_flg'] = "0";
+            }
+        }
+        if (((int)$input['classification'] == 7 || (int)$input['classification'] == 8 ) && (int)$input['passed_away_relationship'] != 1) {
+            $input['company_telegram1_flg'] = "1";
             $input['company_telegram2_flg'] = "1";
-        }else{
-            $input['company_telegram2_flg'] = "0";
         }
         // End edit by IVS 2023/12/01
 
@@ -1388,7 +1393,7 @@ class MourningController extends Controller
         }
 
         $request->session()->put("form_input", $input);
-
+        // dd($input,"ccc");
         \DB::beginTransaction();
         try {
             $contactInfo = ContactInfo::find($input['id']);

@@ -32,8 +32,8 @@ class AdminListController extends Controller
 
         $users = [];
         while (($col = fgetcsv($file))!== FALSE ) {
-            if (($col[1] && $col[4])) {
-                $users[] = [$col[1],$col[4]];
+            if (($col[0] && $col[1])) {
+                $users[] = [$col[0],$col[1]];
             }
         }
         fclose($file);

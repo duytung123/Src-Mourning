@@ -209,24 +209,51 @@
         </tr>
         <tr>
             <th class="" rowspan="2"><div>会社規定分</div></th>
+            @if ((int)$data['company_telegram1_flg'] == 1)
+            <td class="w25 l3"><div class="lt">差出人</div></td>
+            @else
             <td class="w25 l3"><div class="lt">差出人</div><div>{{$data['company_name1']}}</div></td>
-            <td class="w5"><div class="f10">@if((int)$data['company_telegram1'] == 0) ー @else ○ @endif</div></td>
-            <td class="w25"><div class="lt">差出人</div><div>{{$data['company_name1']}}</div></td>
-            <td class="w5"><div class="f10">@if((int)$data['company_floral_tribute1'] == 0) ー @else ○ @endif</div></td>
+            @endif
+            <td class="w5"><div class="f10">@if((int)$data['company_telegram1'] == 0 || (int)$data['company_telegram1_flg'] == 1) ー @else ○ @endif</div></td>
+            @if ((int)$data['company_floral_tribute1_flg'] == 1)
+            <td class="w25 l3"><div class="lt">差出人</div></td>
+            @else
+            <td class="w25 l3"><div class="lt">差出人</div><div>{{$data['company_name1']}}</div></td>
+            @endif
+
+            <td class="w5"><div class="f10">@if((int)$data['company_floral_tribute1'] == 0 || (int)$data['company_floral_tribute1_flg'] == 1) ー @else ○ @endif</div></td>
             <td class="w30">
                 <div class="lt">差出人</div>
+                @if ($data['company_condolence_money1'] == null)
+                <div></div>
+                @else
                 <div>{{$data['company_name1']}}</div>
+                @endif
                 <div><span class="f10">{{$data['company_condolence_money1']}}</span> 万円</div>
             </td>
         </tr>
         <tr>
+            @if ((int)$data['company_telegram2_flg'] == 1)
+            <td class="w25 l3"><div class="lt">差出人</div></td>
+            @else
             <td class="w25 l3"><div class="lt">差出人</div><div>{{$data['company_name2']}}</div></td>
-            <td class="w5"><div class="f10">@if((int)$data['company_telegram2'] == 0) ー @else ○ @endif</div></td>
-            <td class="w25"><div class="lt">差出人</div><div>{{$data['company_name2']}}</div></td>
-            <td class="w5"><div class="f10">@if((int)$data['company_floral_tribute2'] == 0) ー @else ○ @endif</div></td>
+            @endif
+            <td class="w5"><div class="f10">@if((int)$data['company_telegram2'] == 0 || (int)$data['company_telegram2_flg'] == 1) ー @else ○ @endif</div></td>
+
+            @if ((int)$data['company_floral_tribute2_flg'] == 1)
+            <td class="w25 l3"><div class="lt">差出人</div></td>
+            @else
+            <td class="w25 l3"><div class="lt">差出人</div><div>{{$data['company_name2']}}</div></td>
+            @endif
+
+            <td class="w5"><div class="f10">@if((int)$data['company_floral_tribute2'] == 0 || (int)$data['company_floral_tribute2_flg'] == 1) ー @else ○ @endif</div></td>
             <td class="w30">
                 <div class="lt">差出人</div>
+                @if ($data['company_condolence_money2'] == null)
+                <div></div>
+                @else
                 <div>{{$data['company_name2']}}</div>
+                @endif
                 <div><span class="f10">{{$data['company_condolence_money2']}}</span> 万円</div>
             </td>
         </tr>

@@ -6,7 +6,9 @@
             <div class="card-panel teal lighten-5">
             <span class="teal-text text-darken-2">
             弔事連絡の内容を確認の上、ご担当の各入力エリアに確認入力をしてください。<br>
-              <strong class="bg1">総務担当入力エリア</strong>・<strong class="bg2">支部委員長/分会長入力エリア</strong>・<strong class="bg3">所属長入力エリア</strong>
+            {{-- ivs_phthanh --}}
+              <strong class="bg1" id="bg1_1">手配担当者(総務/業務担当等) 入力エリア</strong>・<strong class="bg2">所属組合役員入力エリア</strong>・<strong class="bg3">所属長 入力エリア</strong>
+             {{-- ivs_phthanh --}}
               <!-- <br>ごとに確認入力をお願いします。 -->
             </span>
             </div>
@@ -20,12 +22,19 @@
             <div class="divider"></div>
             <div class=" text-small">
                 <div class="row res-block">
-                    <strong class="col s12 m4">ステイタス</strong>
-                    <p class="col s12 m8 wb">
+                    <strong style="margin-left: 33.33333%" class="">ステイタス</strong>
+                    {{-- <p class="col s12 m8 wb">
                         {{ $statusArray[$session['status']] }}
-                    </p>
+                    </p> --}}
                 </div>
                 <div class="divider"></div>
+                <div class="row res-block">
+                    <strong class="col s12 m4">弔事当事者</strong>
+                    <p class="col s12 m8 wb">
+                        登録済
+                    </p>
+                </div>
+                {{-- <div class="divider"></div>
 
                 <div class="row res-block">
                     <strong class="col s12 m4">総務受付日時</strong>
@@ -54,22 +63,22 @@
                             <strong class="purple-accent-3">未受付</strong>
                         @endif
                     </p>
-                </div>
+                </div> --}}
                 <div class="divider"></div>
                 <div class="row res-block">
-                    <strong class="col s12 m4">総務担当</strong>
+                    <strong class="col s12 m4">手配担当者(総務/業務担当等)</strong>
                     <p class="col s12 m8 wb">
                         @if((int)$session['general_affairs_confirmation'] == 1)
-                            確認済み
+                            受付登録済
                         @else
-                            <strong class="purple-accent-3">未確認</strong>
+                            <strong class="purple-accent-3">未受付登録</strong>
                         @endif
                     </p>
                 </div>
                 @if((int)$session['classification'] != 6)
                     <div class="divider"></div>
                     <div class="row res-block">
-                        <strong class="col s12 m4">支部委員長/分会長</strong>
+                        <strong class="col s12 m4">所属組合役員</strong>
                         <p class="col s12 m8 wb">
                             @if((int)$session['branch_chief_confirmation'] == 1)
                                 確認済み
@@ -93,12 +102,14 @@
 
                 <div class="divider"></div>
                 <div class="row res-block">
-                    <strong class="col s5">PDFダウンロード</strong>
-                    <span class="mt5 s7">@if((int)$session['final_confirmation'] == 1 && (int)$session['status'] > 4)
-                            <p class=""><a href="{{ route('pdf.output',['id' => encrypt($session['id']), 'no'=>encrypt($session['related_employee_no']) ]) }}" class="waves-effect waves-light btn" target="_blank">PDF ダウンロード<i class="material-icons left">cloud_download</i></a></p>
+                    <strong class="col s12 m4">手配担当者(総務/業務担当等)</strong>
+                    <p class="col s12 m8 wb">
+                        @if((int)$session['final_confirmation'] == 1 && (int)$session['status'] > 4)
+                        最終確認済
                         @else
-                            ー
-                        @endif</span>
+                        <strong class="purple-accent-3">最終未確認</strong>
+                        @endif
+                    </p>
                 </div>
 
             </div>
@@ -346,38 +357,55 @@
                             </div>
                             <div class="refusal">
                                 <div class="input-field row res-block">
-                                    <input id="wake_attendees1" name="wake_attendees1" type="text" class="validate" placeholder="総務担当が入力" value="@if($session['wake_attendees1']){{$session['wake_attendees1']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
-                                    <label for="wake_attendees1" class="bg1">参列予定者①（総務担当入力）</label>
+                                    {{-- ivs_phthanh --}}
+                                    <input id="wake_attendees1" name="wake_attendees1" type="text" class="validate" placeholder="手配担当者(総務/業務担当等)が入力" value="@if($session['wake_attendees1']){{$session['wake_attendees1']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    <label for="wake_attendees1" class="bg1">参列予定者①（手配担当者(総務/業務担当等)入力）</label>
+                                    {{-- ivs_phthanh --}}
                                 </div>
                                 <div class="input-field row res-block">
-                                    <input id="wake_attendees2" name="wake_attendees2" type="text" class="validate" placeholder="総務担当が入力" value="@if($session['wake_attendees2']){{$session['wake_attendees2']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
-                                    <label for="wake_attendees2" class="bg1">参列予定者②（総務担当入力）</label>
+                                    {{-- ivs_phthanh --}}
+                                    <input id="wake_attendees2" name="wake_attendees2" type="text" class="validate" placeholder="手配担当者(総務/業務担当等)が入力" value="@if($session['wake_attendees2']){{$session['wake_attendees2']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    <label for="wake_attendees2" class="bg1">参列予定者②（手配担当者(総務/業務担当等)入力）</label>
+                                    {{-- ivs_phthanh --}}
                                 </div>
                                 <div class="input-field row res-block">
-                                    <input id="wake_attendees3" name="wake_attendees3" type="text" class="validate" placeholder="総務担当が入力" value="@if($session['wake_attendees3']){{$session['wake_attendees3']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
-                                    <label for="wake_attendees3" class="bg1">参列予定者③（総務担当入力）</label>
+                                    {{-- ivs_phthanh --}}
+                                    <input id="wake_attendees3" name="wake_attendees3" type="text" class="validate" placeholder="手配担当者(総務/業務担当等)が入力" value="@if($session['wake_attendees3']){{$session['wake_attendees3']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    <label for="wake_attendees3" class="bg1">参列予定者③（手配担当者(総務/業務担当等)入力）</label>
+                                    {{-- ivs_phthanh --}}
                                 </div>
                                 <div class="input-field row res-block">
-                                    <label for="wake_attendees" class="bg1">備考（総務担当入力）</label>
+                                    {{-- ivs_phthanh --}}
+                                    <label for="wake_attendees" class="bg1">備考（手配担当者(総務/業務担当等)入力）</label>
+                                    {{-- ivs_phthanh --}}
                                     <textarea id="wake_attendees" name="wake_attendees" type="text" class="validate" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>@if($session['wake_attendees']){{$session['wake_attendees']}}@endif</textarea>
                                 </div>
                             </div>
                         @else
                             <div>
                                 <div class="input-field row res-block">
-                                    <input id="wake_attendees1" name="wake_attendees1" type="text" class="validate" placeholder="総務担当が入力" value="@if($session['wake_attendees1']){{$session['wake_attendees1']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
-                                    <label for="wake_attendees1" class="bg1">参列予定者①（総務担当入力）</label>
+                                    {{-- ivs_phthanh --}}
+                                    <input id="wake_attendees1" name="wake_attendees1" type="text" class="validate" placeholder="手配担当者(総務/業務担当等)が入力" value="@if($session['wake_attendees1']){{$session['wake_attendees1']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+
+                                    <label for="wake_attendees1" class="bg1">参列予定者①（手配担当者(総務/業務担当等)入力）</label>
+                                    {{-- ivs_phthanh --}}
                                 </div>
                                 <div class="input-field row res-block">
-                                    <input id="wake_attendees2" name="wake_attendees2" type="text" class="validate" placeholder="総務担当が入力" value="@if($session['wake_attendees2']){{$session['wake_attendees2']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
-                                    <label for="wake_attendees2" class="bg1">参列予定者②（総務担当入力）</label>
+                                    {{-- ivs_phthanh --}}
+                                    <input id="wake_attendees2" name="wake_attendees2" type="text" class="validate" placeholder="手配担当者(総務/業務担当等)が入力" value="@if($session['wake_attendees2']){{$session['wake_attendees2']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    <label for="wake_attendees2" class="bg1">参列予定者②（手配担当者(総務/業務担当等)入力）</label>
+                                    {{-- ivs_phthanh --}}
                                 </div>
                                 <div class="input-field row res-block">
-                                    <input id="wake_attendees3" name="wake_attendees3" type="text" class="validate" placeholder="総務担当が入力" value="@if($session['wake_attendees3']){{$session['wake_attendees3']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
-                                    <label for="wake_attendees3" class="bg1">参列予定者③（総務担当入力）</label>
+                                    {{-- ivs_phthanh --}}
+                                    <input id="wake_attendees3" name="wake_attendees3" type="text" class="validate" placeholder="手配担当者(総務/業務担当等)が入力" value="@if($session['wake_attendees3']){{$session['wake_attendees3']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    <label for="wake_attendees3" class="bg1">参列予定者③（手配担当者(総務/業務担当等)入力）</label>
+                                    {{-- ivs_phthanh --}}
                                 </div>
                                 <div class="input-field row res-block">
-                                    <label for="wake_attendees" class="bg1">備考（総務担当入力）</label>
+                                    {{-- ivs_phthanh --}}
+                                    <label for="wake_attendees" class="bg1">備考（手配担当者(総務/業務担当等)入力）</label>
+                                    {{-- ivs_phthanh --}}
                                     <textarea id="wake_attendees" name="wake_attendees" type="text" class="validate" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>@if($session['wake_attendees']){{$session['wake_attendees']}}@endif</textarea>
                                 </div>
                             </div>
@@ -458,19 +486,27 @@
                             </div>
                             <div class="refusal">
                                 <div class="input-field row res-block">
-                                    <input id="funeral_attendees1" name="funeral_attendees1" type="text" class="validate" placeholder="総務担当が入力" value="@if($session['funeral_attendees1']){{$session['funeral_attendees1']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    {{-- ivs_phthanh --}}
+                                    <input id="funeral_attendees1" name="funeral_attendees1" type="text" class="validate" placeholder="手配担当者(総務/業務担当等)が入力" value="@if($session['funeral_attendees1']){{$session['funeral_attendees1']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    {{-- ivs_phthanh --}}
                                     <label for="funeral_attendees1" class="bg1">参列予定者①</label>
                                 </div>
                                 <div class="input-field row res-block">
-                                    <input id="funeral_attendees2" name="funeral_attendees2" type="text" class="validate" placeholder="総務担当が入力" value="@if($session['funeral_attendees2']){{$session['funeral_attendees2']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    {{-- ivs_phthanh --}}
+                                    <input id="funeral_attendees2" name="funeral_attendees2" type="text" class="validate" placeholder="手配担当者(総務/業務担当等)が入力" value="@if($session['funeral_attendees2']){{$session['funeral_attendees2']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    {{-- ivs_phthanh --}}
                                     <label for="funeral_attendees2" class="bg1">参列予定者②</label>
                                 </div>
                                 <div class="input-field row res-block">
-                                    <input id="funeral_attendees3" name="funeral_attendees3" type="text" class="validate" placeholder="総務担当が入力" value="@if($session['funeral_attendees3']){{$session['funeral_attendees3']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    {{-- ivs_phthanh --}}
+                                    <input id="funeral_attendees3" name="funeral_attendees3" type="text" class="validate" placeholder="手配担当者(総務/業務担当等)が入力" value="@if($session['funeral_attendees3']){{$session['funeral_attendees3']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    {{-- ivs_phthanh --}}
                                     <label for="funeral_attendees3" class="bg1">参列予定者③</label>
                                 </div>
                                 <div class="input-field row res-block">
-                                    <label for="wake_attendees" class="bg1">備考（総務担当入力）</label>
+                                    {{-- ivs_phthanh --}}
+                                    <label for="wake_attendees" class="bg1">備考（手配担当者(総務/業務担当等)入力）</label>
+                                    {{-- ivs_phthanh --}}
                                     <textarea id="funeral_attendees" name="funeral_attendees" type="text" class="validate" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>@if($session['funeral_attendees']){{$session['funeral_attendees']}}@endif</textarea>
                                 </div>
 
@@ -478,19 +514,27 @@
                         @else
                             <div>
                                 <div class="input-field row res-block">
-                                    <input id="funeral_attendees1" name="funeral_attendees1" type="text" class="validate" placeholder="総務担当が入力" value="@if($session['funeral_attendees1']){{$session['funeral_attendees1']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    {{-- ivs_phthanh --}}
+                                    <input id="funeral_attendees1" name="funeral_attendees1" type="text" class="validate" placeholder="手配担当者(総務/業務担当等)が入力" value="@if($session['funeral_attendees1']){{$session['funeral_attendees1']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    {{-- ivs_phthanh --}}
                                     <label for="funeral_attendees1" class="bg1">参列予定者①</label>
                                 </div>
                                 <div class="input-field row res-block">
-                                    <input id="funeral_attendees2" name="funeral_attendees2" type="text" class="validate" placeholder="総務担当が入力" value="@if($session['funeral_attendees2']){{$session['funeral_attendees2']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    {{-- ivs_phthanh --}}
+                                    <input id="funeral_attendees2" name="funeral_attendees2" type="text" class="validate" placeholder="手配担当者(総務/業務担当等)が入力" value="@if($session['funeral_attendees2']){{$session['funeral_attendees2']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    {{-- ivs_phthanh --}}
                                     <label for="funeral_attendees2" class="bg1">参列予定者②</label>
                                 </div>
                                 <div class="input-field row res-block">
-                                    <input id="funeral_attendees3" name="funeral_attendees3" type="text" class="validate" placeholder="総務担当が入力" value="@if($session['funeral_attendees3']){{$session['funeral_attendees3']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    {{-- ivs_phthanh --}}
+                                    <input id="funeral_attendees3" name="funeral_attendees3" type="text" class="validate" placeholder="手配担当者(総務/業務担当等)が入力" value="@if($session['funeral_attendees3']){{$session['funeral_attendees3']}}@endif" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
+                                    {{-- ivs_phthanh --}}
                                     <label for="funeral_attendees3" class="bg1">参列予定者③</label>
                                 </div>
                                 <div class="input-field row res-block">
-                                    <label for="wake_attendees" class="bg1">備考（総務担当入力）</label>
+                                    {{-- ivs_phthanh --}}
+                                    <label for="wake_attendees" class="bg1">備考（手配担当者(総務/業務担当等)入力）</label>
+                                    {{-- ivs_phthanh --}}
                                     <textarea id="funeral_attendees" name="funeral_attendees" type="text" class="validate" form="general_affairs" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>@if($session['funeral_attendees']){{$session['funeral_attendees']}}@endif</textarea>
                                 </div>
                             </div>
@@ -696,15 +740,16 @@
 {{--            会社規定--}}
             <div class="section text-small grey lighten-2">
                 <div class="inner-block">
-                    <div class="flex"><strong class="text-large">会社規定</strong>　<span class="bg1 text-small">総務担当／秘書室</span><i class="material-icons purple-accent-1">lens</i> <strong>必須項目</strong></div>
-
+                    {{-- ivs_phthanh --}}
+                    <div class="flex"><strong class="text-large">会社規定</strong>　<span class="bg1 text-small">手配担当者(総務/業務担当等)</span><i class="material-icons purple-accent-1">lens</i> <strong>必須項目</strong></div>
+                    {{-- ivs_phthanh --}}
                     @if((int)$session['company'] == 8 || (int)$session['company'] == 10 || (int)$session['classification'] == 6 || (int)$session['classification'] == 5)
                         <input type="hidden" name="company_attend1" form="general_affairs" value="">
                         <input type="hidden" name="company_attend2" form="general_affairs" value="">
                         <div class="section grey lighten-5 bd1-a">
                             <div class="row">
                                 <label for="company_name1" class="col s12 m2 text-small sender bg1">差出人１<sup><i class="tiny material-icons purple-text text-lighten-4">lens</i></sup></label>
-                                <input type="text" name="company_name1" id="company_name1" form="general_affairs" class="col s12 m10 text-small" placeholder="差出人名を入力" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif required value="{{ $session['company_name1'] }}">
+                                <input type="text" name="company_name1" id="company_name1" form="general_affairs" class="col s12 m10 text-small" placeholder="差出人名を入力" @if((int)$session['general_affairs_confirmation'] == 1 || ((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1)) disabled @endif required value=" @if ((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1) ー @else {{ $session['company_name1'] }} @endif ">
                             </div>
                             <div class="row" data-company-attend1="{{$session['company_attend1']}}">
 
@@ -792,11 +837,12 @@
 
                         </div>
                     @else
-                        <input type="hidden" name="company_floral_tribute2" form="general_affairs" value="0">
+                        <input type="hidden" name="company_floral_tribute2" form="general_affairs" value="{{$session['company_floral_tribute2']}}">
                         <div class="section grey lighten-5">
                             <div class="row">
                                 <label for="company_name1" class="col s12 m2 text-small sender bg1">差出人１</label>
-                                <input type="text" name="company_name1" id="company_name1" form="general_affairs" class="col s12 m10 text-small" value="{{$session['company_name1']}}" placeholder="差出人名" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif required>
+                                {{-- <input type="text" name="company_name1" id="company_name1" form="general_affairs" class="col s12 m10 text-small" value="{{$session['company_name1']}}" placeholder="差出人名" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif required> --}}
+                                <input type="text" name="company_name1" id="company_name1" form="general_affairs" class="col s12 m10 text-small" placeholder="差出人名を入力" @if((int)$session['general_affairs_confirmation'] == 1 ) disabled @endif required value="@if ((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1)ー@else {{ $session['company_name1'] }} @endif ">
                             </div>
                             <div class="row" data-company-attend1="{{$session['company_attend1']}}">
 
@@ -864,7 +910,8 @@
                             <div class="divider"></div>
                             <div class="row">
                                 <label for="company_name2" class="col s12 m2 text-small sender bg1">差出人２</label>
-                                <input type="text" name="company_name2" id="company_name2" form="general_affairs" class="col s12 m10 text-small" value="{{$session['company_name2']}}" placeholder="差出人名" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif required>
+                                {{-- <input type="text" name="company_name2" id="company_name2" form="general_affairs" class="col s12 m10 text-small" value="{{$session['company_name2']}}" placeholder="差出人名" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif required> --}}
+                                <input type="text" name="company_name2" id="company_name2" form="general_affairs" class="col s12 m10 text-small" placeholder="差出人名を入力" @if((int)$session['general_affairs_confirmation'] == 1 || ((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1)) disabled @endif required value=" @if ((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1) ー @else {{ $session['company_name2'] }} @endif ">
                             </div>
                             <div class="row ">
                                 @if((int)$session['general_affairs_confirmation'] == 1)
@@ -925,7 +972,9 @@
 
 {{--        <!-- 総務担当／秘書室 確認入力 --> --}}
         <li class="section " data-type="1">
-            <div class="collapsible-header bg1-2"><span>総務担当／秘書室 確認入力</span>
+            {{-- ivs_phthanh --}}
+            <div class="collapsible-header bg1-2"><span>手配担当者(総務/業務担当等) 最終確認入力</span>
+            {{-- ivs_phthanh --}}
                 @if((int)$session['general_affairs_confirmation'] == 1)
                     <span>【確認済み】</span>
                 @else
@@ -937,6 +986,9 @@
                     <input type="radio" name="previous" @if (old('previous')) checked @endif style="display: none">
                     <input type="hidden" name="accordion" value="general_affairs">
                     <input type="hidden" name="id" value="{{ $session['id'] }}">
+                    <input type="hidden" name="classification" value="{{ $session['classification'] }}">
+                    <input type="hidden" name="passed_away_relationship" value="{{ $session['passed_away_relationship'] }}">
+                    <input type="hidden" name="chief_mourner" value="{{ $session['chief_mourner'] }}">
                     <input type="hidden" name="related_employee_no" value="{{ $session['related_employee_no'] }}">
                     <input type="hidden" name="password" value="{{ $session['password'] }}">
                     <input type="hidden" name="supervisor_confirmation" value="{{ $session['supervisor_confirmation'] }}">
@@ -954,8 +1006,6 @@
                     <input type="hidden" name="company_condolence_money2_flg" value="{{ $session['company_condolence_money2_flg'] }}">
                     <input type="hidden" name="company" value="{{ $session['company'] }}">
                     <input type="hidden" name="status" value="3">
-                    <input type="hidden" name="classification" value="{{ $session['classification'] }}">
-
                     <div class="row">
                         <div class="col s12 m6">
                             <label>
@@ -1009,17 +1059,21 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12 m6">
-                            <label for="general_affairs_contact_toll1">連絡先（トール）<sup><i class="tiny material-icons">lens</i></sup></label>
+                            {{-- ivs_phthanh  --}}
+                            <label for="general_affairs_contact_toll1">連絡先（トール）</label>
+                            {{-- ivs_phthanh  --}}
                             <div class="flex pt10">
                                 <span class="mb10">8 - </span>
-                                <input class="text-small grey lighten-5 zen2half w-rem p-h center-align" style="--w-rem:4rem;--p-h:0.5em" name="general_affairs_contact_toll1" id="general_affairs_contact_toll1" maxlength="2" pattern="[0-9]{2}" placeholder="00" required @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif value="{{ $session['general_affairs_contact_toll1'] }}">
+                                <input class="text-small grey lighten-5 zen2half w-rem p-h center-align" style="--w-rem:4rem;--p-h:0.5em" name="general_affairs_contact_toll1" id="general_affairs_contact_toll1" maxlength="2" pattern="[0-9]{2}" placeholder="00" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif value="{{ $session['general_affairs_contact_toll1'] }}">
                                 <span class="mb10"> - </span>
-                                <input class="text-small grey lighten-5 zen2half w-rem p-h center-align" style="--w-rem:6rem;--p-h:0.5em" name="general_affairs_contact_toll2" id="general_affairs_contact_toll2" maxlength="4" pattern="[0-9]{4}" placeholder="0000" required @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif value="{{ $session['general_affairs_contact_toll2'] }}">
+                                <input class="text-small grey lighten-5 zen2half w-rem p-h center-align" style="--w-rem:6rem;--p-h:0.5em" name="general_affairs_contact_toll2" id="general_affairs_contact_toll2" maxlength="4" pattern="[0-9]{4}" placeholder="0000" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif value="{{ $session['general_affairs_contact_toll2'] }}">
                             </div>
                         </div>
                         <div class="input-field col s12 m6">
-                            <label for="general_affairs_contact_info">外線<sup><i class="tiny material-icons">lens</i></sup></label>
-                            <input class="text-small grey lighten-5 zen2half mt10 p-h" style="--p-h:0.5em" name="general_affairs_contact_info" id="general_affairs_contact_info" required pattern="[0-9]*" placeholder="ハイフン無しの数字" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif value="{{ $session['general_affairs_contact_info'] }}">
+                            {{-- ivs_phthanh  --}}
+                            <label for="general_affairs_contact_info">外線</label>
+                            {{-- ivs_phthanh  --}}
+                            <input class="text-small grey lighten-5 zen2half mt10 p-h" style="--p-h:0.5em" name="general_affairs_contact_info" id="general_affairs_contact_info" pattern="[0-9]*" placeholder="ハイフン無しの数字" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif value="{{ $session['general_affairs_contact_info'] }}">
                         </div>
                     </div>
 
@@ -1031,8 +1085,10 @@
 
                     <div class="row">
                         <div class="col s12">
+                            {{-- ivs_phthanh  --}}
                             <button type="submit" class="waves-effect waves-light btn btn-large deep-purple lighten-4 grey-text text-darken-2 w-full" role="button" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif>
-                                登録<i class="material-icons right">chevron_right</i></button>
+                                最終登録<i class="material-icons right">chevron_right</i></button>
+                            {{-- ivs_phthanh  --}}
                         </div>
                     </div>
                 </form>
@@ -1281,21 +1337,21 @@
                     </div>
                     @if((int)$session['classification'] != 6)
                         <div class="row">
-                            <strong class="col s5">支部委員長/分会長</strong>
+                            <strong class="col s5">所属組合役員</strong>
                             <span class="mt5 s7">
                                 @if((int)$session['branch_chief_confirmation'] == 1)
-                                    確認済み
+                                確認済
                                 @else
-                                    未確認
+                                未確認
                                 @endif</span>
                         </div>
                         <div class="row">
                             <strong class="col s5">所属長</strong>
                             <span class="mt5 s7">
                                 @if((int)$session['supervisor_confirmation'] == 1)
-                                    確認済み
+                                確認済
                                 @else
-                                    未確認
+                                未確認
                                 @endif</span>
                         </div>
                     @endif

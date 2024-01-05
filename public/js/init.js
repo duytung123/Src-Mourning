@@ -28,7 +28,7 @@
             if(e.target.getAttribute('name') == "entrant"){
                 var valEntrant = e.target.value
             }
-            if( (valWake === '1' && valFuneral === '1') || (valEntrant ==='0' && valClass === '8')  || (valEntrant === '0' && valRelationship === '7') || (valRelationship === '7' && valChiefMourner === '0') || (valRelationship === '7' && valChiefMourner === '1')){
+            if( (valWake === '1' && valFuneral === '1') || (valEntrant ==='0' && valClass === '8') || (valEntrant ==='1' && valClass === '8' && valRelationship != '1')  || (valEntrant === '0' && valRelationship === '7') || (valRelationship === '7' && valChiefMourner === '0') || (valRelationship === '7' && valChiefMourner === '1')){
                 $('#section-others').addClass('toggle-body')
                 $('#section-others').removeClass('active')
             }else{
@@ -40,6 +40,9 @@
             }
             else{
                 document.querySelector('select[id="passed_away_relationship"] option[value="1"]').disabled = true;
+                if(valRelationship === '1'){
+                    $("#passed_away_relationship").val('')
+                }
             }
         });
 
