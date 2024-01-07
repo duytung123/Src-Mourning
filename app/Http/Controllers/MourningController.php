@@ -924,6 +924,7 @@ class MourningController extends Controller
         // Edit by IVS 2023/12/26
         $setLogic = new SetLogicController();
         $setLogic->set($request);
+        // dd($input);
         // End Edit by IVS 2023/12/26
         \DB::beginTransaction();
         try {
@@ -1842,5 +1843,36 @@ class MourningController extends Controller
             'lists' => $lists,
             'statusArray' => $this->status(),
         ]);
+    }
+
+    function editManagerInformation(Request $request) {
+        $input = $request->all();
+        \DB::beginTransaction();
+        try {
+            $contactInfo = ContactInfo::find($input['id']);
+            // dd($input);
+            $contactInfo->fill([
+                "entrant" => $input["entrant"],
+                "related_employee_no" => $input["related_employee_no"],
+                "membership_year" => $input["membership_year"],
+                "related_name" => $input["related_name"],
+                "related_kana" => $input["related_kana"],
+                "classification" => $input["classification"],
+                "company" => $input["company"],
+                "member1" => $input["member1"],
+                "member2" => $input["member2"],
+                "passed_away_name" => $input["passed_away_name"],
+                "passed_away_kana" => $input["passed_away_kana"],
+                "passed_away_date" => $input["passed_away_date"],
+                "passed_away_relationship" => $input["passed_away_relationship"],
+                // "update_user" => $input["related_employee_no"],
+            ]);
+            $contactInfo->save();
+            // dd($contactInfo);
+            \DB::commit();
+        } catch (\Throwable $exception) {
+            \DB::rollback();
+        }
+        return redirect()->action([MourningController::class, 'showManagerEdit']);
     }
 }

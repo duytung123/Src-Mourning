@@ -645,3 +645,9 @@ sup i.material-icons {
   padding-left: 12px;
   color: #ef5350;
 }/*# sourceMappingURL=style.css.map */
+
+.classification-manager , .company-manager , .passed-manager , .passed-date-manager{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

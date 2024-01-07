@@ -119,117 +119,156 @@
 
     <!-- 基本情報 -->
     <section class="section card grey lighten-5">
-        <div class="card-content">
-            <span class="card-title">基本情報</span>
-            <div class="divider"></div>
-            <div class="section text-small">
-                <div class="row res-block">
-                    <strong class="col s12 m4">入力者</strong>
-                    <p class="col s12 m8 wb">{{ $entrantArray[$session['entrant']] }}</p>
+        <form action="{{ route('manager.information.edit') }}" method="post">
+            @csrf
+            <div class="card-content">
+                <div class="collapsible-header bg1-2">
+                <span style="border-bottom:none"  class="card-title collapsible-header bg1-2">基本情報cc</span>
+                <span class="toggle"></span>
                 </div>
                 <div class="divider"></div>
-                <div class="row res-block">
-                    <strong class="col s12 m4">弔事当事者の社員番号</strong>
-                    <p class="col s12 m8 wb">{{ $session['related_employee_no'] }}</p>
-                </div>
-                <div class="divider"></div>
-                <div class="row res-block">
-                    <strong class="col s12 m4">弔事当事者の入社年度</strong>
-                    <p class="col s12 m8 wb">{{ $session['membership_year'] }} 年</p>
-                </div>
-                <div class="divider"></div>
-                <div class="row res-block">
-                    <strong class="col s12 m4">氏名</strong>
-                    <p class="col s12 m8 wb">{{ $session['related_name'] }}</p>
-                </div>
-                <div class="divider"></div>
-                <div class="row res-block">
-                    <strong class="col s12 m4">フリガナ</strong>
-                    <p class="col s12 m8 wb">{{ $session['related_kana'] }}</p>
-                </div>
-                <div class="divider"></div>
-                <div class="row res-block">
-                    <strong class="col s12 m4">社員区分</strong>
-                    <p class="col s12 m8 wb">{{ $classificationsArray[$session['classification']] }}</p>
-                </div>
-                <div class="divider"></div>
-                <div class="row res-block">
-                    <strong class="col s12 m4">就業会社</strong>
-                    <p class="col s12 m8 wb">{{ $companiesArray[$session['company']] }}</p>
-                </div>
-                <div class="divider"></div>
-                <div class="row res-block">
-                    <strong class="col s12 m4">所属①</strong>
-                    <p class="col s12 m8 wb">{{ $session['member1'] }}</p>
-                </div>
-                <div class="divider"></div>
-                <div class="row res-block">
-                    <strong class="col s12 m4">所属②</strong>
-                    <p class="col s12 m8 wb">{{ $session['member2'] }}</p>
-                </div>
-                <div class="divider"></div>
-
-                @if((int)$session['entrant'] == 1)
-                    <div class="grey lighten-3">
-                        <div class="row res-block">
-                            <strong class="col s12 m4">代理者の社員番号</strong>
-                            <p class="col s12 m8 wb">{{ $session['entrant_employee_no'] }}</p>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="row res-block">
-                            <strong class="col s12 m4">氏名</strong>
-                            <p class="col s12 m8 wb">{{ $session['entrant_name'] }}</p>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="row res-block">
-                            <strong class="col s12 m4">フリガナ</strong>
-                            <p class="col s12 m8 wb">{{ $session['entrant_kana'] }}</p>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="row res-block">
-                            <strong class="col s12 m4">社員区分</strong>
-                            <p class="col s12 m8 wb">{{ $classificationsArray[$session['entrant_classification']] }}</p>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="row res-block">
-                            <strong class="col s12 m4">就業会社</strong>
-                            <p class="col s12 m8 wb">{{ $companiesArray[$session['entrant_company']] }}</p>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="row res-block">
-                            <strong class="col s12 m4">所属①</strong>
-                            <p class="col s12 m8 wb">{{ $session['entrant_member1'] }}</p>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="row res-block">
-                            <strong class="col s12 m4">所属②</strong>
-                            <p class="col s12 m8 wb">{{ $session['entrant_member2'] }}</p>
-                        </div>
+                <div style="display: block" class="section text-small collapsible-body grey lighten-5 bd1">
+                    <div class="row res-block">
+                        <strong class="col s12 m4">入力者</strong>
+                        {{-- <p class="col s12 m8 wb"><input type="text" name="entrant" value="{{ $entrantArray[$session['entrant']] }}"></p> --}}
+                        <label class="col">
+                            <input type="radio" name="entrant" class="is-toggle" data-tgt="js_entrant" data-state="false" value="0" @if (old('entrant') == '0' || (int)$session['entrant'] == '0' || ((old('entrant') != '1' && (int)$session['entrant'] != '1'))) checked @endif required>
+                            <span>本人(弔事当事者)</span>
+                        </label>
+                        <label class="col">
+                            <input type="radio" name="entrant" class="is-toggle" data-tgt="js_entrant" data-state="true" value="1" @if (old('entrant') == '1' || (int)$session['entrant'] == '1') checked @endif>
+                            <span>代理者の入力</span>
+                        </label>
                     </div>
                     <div class="divider"></div>
-                @endif
+                    <div class="row res-block">
+                        <strong class="col s12 m4">弔事当事者の社員番号</strong>
+                        
+                        <p class="col s12 m8 wb"><input type="text" name="related_employee_no" value="{{ $session['related_employee_no'] }}"></p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row res-block">
+                        <strong class="col s12 m4">弔事当事者の入社年度</strong>
+                        <p class="col s12 m8 wb"> <input type="text" name="membership_year" value="{{ $session['membership_year'] }}">年</p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row res-block">
+                        <strong class="col s12 m4">氏名</strong>
+                       
+                        <p class="col s12 m8 wb"> <input type="text" name="related_name" value="{{ $session['related_name'] }}"></p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row res-block">
+                        <strong class="col s12 m4">フリガナ</strong>
+                        
+                        <p class="col s12 m8 wb"><input type="text" name="related_kana" value="{{ $session['related_kana'] }}"></p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row res-block classification-manager">
+                        <strong class="col s12 m4">社員区分</strong>
+                        {{-- <p class="col s12 m8 wb">{{ $classificationsArray[$session['classification']] }}</p> --}}
+                        <select style="width: 67%;" name="classification" id="classification" class="required browser-default text-xSmall" required data-title="本人(弔事当事者)社員区分">
+                            @include('mourning.classifications')
+                        </select>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row res-block company-manager">
+                        <strong class="col s12 m4">就業会社</strong>
+                        {{-- <p class="col s12 m8 wb">{{ $companiesArray[$session['company']] }}</p> --}}
+                        <select style="width: 67%;" name="company" id="company" class="required browser-default text-xSmall" required  data-title="本人(弔事当事者)就業会社">
+                            @include('mourning.companies')
+                        </select>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row res-block">
+                        <strong class="col s12 m4">所属①</strong>
+                        
+                        <p class="col s12 m8 wb"><input type="text" name="member1" value="{{ $session['member1'] }}"></p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row res-block">
+                        <strong class="col s12 m4">所属②</strong>
+                       
+                        <p class="col s12 m8 wb"> <input type="text" name="member2" value="{{ $session['member2'] }}"></p>
+                    </div>
+                    <div class="divider"></div>
+    
+                    @if((int)$session['entrant'] == 1)
+                        <div class="grey lighten-3">
+                            <div class="row res-block">
+                                <strong class="col s12 m4">代理者の社員番号</strong>
+                                <p class="col s12 m8 wb"><input type="text" name="entrant_employee_no" value="{{ $session['entrant_employee_no'] }}"></p>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row res-block">
+                                <strong class="col s12 m4">氏名</strong>
+                                <p class="col s12 m8 wb"><input type="text" name="entrant_name" value="{{ $session['entrant_name'] }}"></p>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row res-block">
+                                <strong class="col s12 m4">フリガナ</strong>
+                                <p class="col s12 m8 wb"><input type="text" name="entrant_kana" value="{{ $session['entrant_kana'] }}"></p>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row res-block">
+                                <strong class="col s12 m4">社員区分</strong>
+                                <p class="col s12 m8 wb"><input type="text" name="entrant_classification" value="{{ $classificationsArray[$session['entrant_classification']] }}"></p>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row res-block">
+                                <strong class="col s12 m4">就業会社</strong>
+                                <p class="col s12 m8 wb"><input type="text" name="entrant_company" value="{{ $companiesArray[$session['entrant_company']] }}"></p>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row res-block">
+                                <strong class="col s12 m4">所属①</strong>
+                                <p class="col s12 m8 wb"><input type="text" name="entrant_member1" value="{{ $session['entrant_member1'] }}"></p>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row res-block">
+                                <strong class="col s12 m4">所属②</strong>
+                                <p class="col s12 m8 wb"><input type="text" name="entrant_member2" value="{{ $session['entrant_member2'] }}"></p>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                    @endif
+    
+                    <div class="row res-block">
+                        <strong class="col s12 m4">故人様氏名</strong>
+                        <p class="col s12 m8 wb"><input type="text" name="passed_away_name" value="{{ $session['passed_away_name'] }}"></p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row res-block">
+                        <strong class="col s12 m4">故人様フリガナ</strong>
+                        <p class="col s12 m8 wb"> <input type="text" name="passed_away_kana" value="{{ $session['passed_away_kana'] }}"></p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row res-block passed-date-manager">
+                        <strong class="col s12 m4">逝去日時</strong>
+                        {{-- <p class="col s12 m8 wb"><input type="text" name="passed_away_date" value=""></p> --}}
+                        <input id="passed_away_date" name="passed_away_date" type="date" class="validate" required @if(old('passed_away_date')) value="old('passed_away_date')" @endif @if($session['passed_away_date']) value="{{$session['passed_away_date']}}" @endif required>
 
-                <div class="row res-block">
-                    <strong class="col s12 m4">故人様氏名</strong>
-                    <p class="col s12 m8 wb">{{ $session['passed_away_name'] }}</p>
-                </div>
-                <div class="divider"></div>
-                <div class="row res-block">
-                    <strong class="col s12 m4">故人様フリガナ</strong>
-                    <p class="col s12 m8 wb">{{ $session['passed_away_kana'] }}</p>
-                </div>
-                <div class="divider"></div>
-                <div class="row res-block">
-                    <strong class="col s12 m4">逝去日時</strong>
-                    <p class="col s12 m8 wb">{{ $passedAwayDate }}</p>
-                </div>
-                <div class="divider"></div>
-                <div class="row res-block">
-                    <strong class="col s12 m4">本人(弔事当事者)との続柄</strong>
-                    <p class="col s12 m8 wb">{{ $passedAwayRelationshipArray[$session['passed_away_relationship']] }}</p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row res-block passed-manager">
+                        <strong class="col s12 m4">本人(弔事当事者)との続柄</strong>
+                        {{-- <p class="col s12 m8 wb">{{ $passedAwayRelationshipArray[$session['passed_away_relationship']] }}</p> --}}
+                        <select style="width:67%" name="passed_away_relationship" id="passed_away_relationship" class="required browser-default text-xSmall" required>
+                            @include('mourning.passedAwayRelationship')
+                        </select>
+                    </div>
+                    <br>
+                    <input type="hidden" name="id" value="{{ $session['id'] }}">
+                    <div class="row">
+                        <div class="col s12">
+                            <button type="submit" class="waves-effect waves-light btn btn-large deep-purple lighten-4 grey-text text-darken-2 w-full" role="button">
+                                情報を編集する<i class="material-icons right">chevron_right</i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
+
     </section>
 
     <!-- 社内親族 -->
@@ -967,7 +1006,7 @@
 
     <input type="hidden" name="accordion-state" id="accordion-state" value="">
     <!-- 総務担当、支部委員長、所属長 -->
-    <div class="row mt50 flex"><i class="material-icons">lens</i> <strong>必須項目</strong></div>
+    <div class="row mt50 flex"><i class="material-icons">lens</i> <strong>必須項目cc</strong></div>
     <ul class="collapsible collapsible-custom" id="js-manager-content">
 
 {{--        <!-- 総務担当／秘書室 確認入力 --> --}}
