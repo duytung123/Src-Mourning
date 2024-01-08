@@ -13,8 +13,11 @@ class SetLogicController extends Controller
         if (!$input) {
             return redirect()->action([MourningController::class, 'showEdit']);
         }
-
-        $input = ContactInfo::find($input['id']);
+        if(isset($input['0'])){
+            $input = ContactInfo::find($input['0']['id']);
+        }else{
+            $input = ContactInfo::find($input['id']);
+        }
 
         $request->session()->put("form_input", $input);
 

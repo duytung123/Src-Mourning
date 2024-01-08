@@ -1849,53 +1849,54 @@ class MourningController extends Controller
 
     function editManagerInformation(Request $request) {
         $input = $request->session()->get("form_input");
-        // Setlogic to manager edit
-        dd($input);
-        $setLogic = new SetLogicController();
-        $setLogic->set($input);
         \DB::beginTransaction();
         try {
-            $contactInfo = ContactInfo::find($input['id']);
-            if($input["entrant"] === '1'){
+            $contactInfo = ContactInfo::find($input['managerInformation']['id']);
+            if((int)$input['managerInformation']["entrant"] == 1){
                 $contactInfo->fill([
                     "entrant" => $input["entrant"],
-                    "related_employee_no" => $input["related_employee_no"],
-                    "membership_year" => $input["membership_year"],
-                    "related_name" => $input["related_name"],
-                    "related_kana" => $input["related_kana"],
-                    "classification" => $input["classification"],
-                    "company" => $input["company"],
-                    "member1" => $input["member1"],
-                    "member2" => $input["member2"],
-                    "passed_away_name" => $input["passed_away_name"],
-                    "passed_away_kana" => $input["passed_away_kana"],
-                    "passed_away_date" => $input["passed_away_date"],
-                    "passed_away_relationship" => $input["passed_away_relationship"],
-                    "entrant_employee_no" => $input["entrant_employee_no"],
-                    "entrant_name" => $input["entrant_name"],
-                    "entrant_kana" => $input["entrant_kana"],
-                    "entrant_classification" => $input["entrant_classification"],
-                    "entrant_company" => $input["entrant_company"],
-                    "entrant_member1" => $input["entrant_member1"],
-                    "entrant_member2" => $input["entrant_member2"],
+                    "related_employee_no" => $input['managerInformation']["related_employee_no"],
+                    "membership_year" => $input['managerInformation']["membership_year"],
+                    "related_name" => $input['managerInformation']["related_name"],
+                    "related_kana" => $input['managerInformation']["related_kana"],
+                    "classification" => $input['managerInformation']["classification"],
+                    "company" => $input['managerInformation']["company"],
+                    "member1" => $input['managerInformation']["member1"],
+                    "member2" => $input['managerInformation']["member2"],
+                    "passed_away_name" => $input['managerInformation']["passed_away_name"],
+                    "passed_away_kana" => $input['managerInformation']["passed_away_kana"],
+                    "passed_away_date" => $input['managerInformation']["passed_away_date"],
+                    "passed_away_relationship" => $input['managerInformation']["passed_away_relationship"],
+                    "entrant_employee_no" => $input['managerInformation']["entrant_employee_no"],
+                    "entrant_name" => $input['managerInformation']["entrant_name"],
+                    "entrant_kana" => $input['managerInformation']["entrant_kana"],
+                    "entrant_classification" => $input['managerInformation']["entrant_classification"],
+                    "entrant_company" => $input['managerInformation']["entrant_company"],
+                    "entrant_member1" => $input['managerInformation']["entrant_member1"],
+                    "entrant_member2" => $input['managerInformation']["entrant_member2"],
+                ]);
+            }else{
+                $contactInfo->fill([
+                    "related_employee_no" => $input['managerInformation']["related_employee_no"],
+                    "membership_year" => $input['managerInformation']["membership_year"],
+                    "related_name" => $input['managerInformation']["related_name"],
+                    "related_kana" => $input['managerInformation']["related_kana"],
+                    "classification" => $input['managerInformation']["classification"],
+                    "company" => $input['managerInformation']["company"],
+                    "member1" => $input['managerInformation']["member1"],
+                    "member2" => $input['managerInformation']["member2"],
+                    "passed_away_name" => $input['managerInformation']["passed_away_name"],
+                    "passed_away_kana" => $input['managerInformation']["passed_away_kana"],
+                    "passed_away_date" => $input['managerInformation']["passed_away_date"],
+                    "passed_away_relationship" => $input['managerInformation']["passed_away_relationship"],
+                    "entrant_employee_no" => $input['managerInformation']["passed_away_relationship"],
                 ]);
             }
-            $contactInfo->fill([
-                "related_employee_no" => $input["related_employee_no"],
-                "membership_year" => $input["membership_year"],
-                "related_name" => $input["related_name"],
-                "related_kana" => $input["related_kana"],
-                "classification" => $input["classification"],
-                "company" => $input["company"],
-                "member1" => $input["member1"],
-                "member2" => $input["member2"],
-                "passed_away_name" => $input["passed_away_name"],
-                "passed_away_kana" => $input["passed_away_kana"],
-                "passed_away_date" => $input["passed_away_date"],
-                "passed_away_relationship" => $input["passed_away_relationship"],
-                "entrant_employee_no" => $input["passed_away_relationship"],
-            ]);
+
             $contactInfo->save();
+            // Set logic for edit manager information
+            $setLogic = new SetLogicController();
+            $setLogic->set($request);
             \DB::commit();
         } catch (\Throwable $exception) {
             \DB::rollback();
@@ -1906,10 +1907,11 @@ class MourningController extends Controller
     public function showEditManagerInformationConfirm(Request $request)
     {
         $input = $request->all();
-        // $request->session()->put("form_input", $input);
-        session()->push('form_input', $input);
-
-        // dd($request->session()->get("form_input"));
+        $array = $request->session()->get("form_input");
+        $val = [];
+        $val[] = $array;
+        $val['managerInformation'] = $input;
+        session()->put('form_input', $val);
         if (!$input) {
             return redirect()->action([MourningController::class, 'showManagerEdit']);
         } else {
