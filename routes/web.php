@@ -62,7 +62,8 @@ Route::group(['middleware'=>'basic.manager.auth'], function(){
     //Route::post('/manager/edit/post', 'App\Http\Controllers\MourningController@postManagerEditConfirm')->name('manager.confirm.post');
 
     // Edit information in manager
-    Route::post('/manager/edit/information/post', 'App\Http\Controllers\MourningController@editManagerInformation')->name('manager.information.edit');
+    Route::post('/manager/edit/information/post', 'App\Http\Controllers\MourningController@editManagerInformation')->name('manager.information.post');
+    Route::get('/manager/edit/information/confirm', 'App\Http\Controllers\MourningController@showEditManagerInformationConfirm')->name('manager.information.confirm.show');
 
     // 総務確認画面
     Route::post('/manager/general-affairs', 'App\Http\Controllers\MourningController@postGeneralAffairs')->name('general_affairs.post');

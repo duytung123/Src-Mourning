@@ -150,7 +150,12 @@
 
                             <div class="row">
                                 <strong class="col s2 bg1">差出人１</strong>
-                                <p class="col s10">{{ $input['company_name1'] }}</p>
+                                {{-- <p class="col s10">{{ $input['company_name1'] }}</p> --}}
+                                 {{-- Edit by IVS 08/01/2024 --}}
+                                @if ($input['company_name1'] == '')
+                                    <p class="col s10">ー</p>
+                                @endif
+                                {{-- End edit by IVS 08/01/2024 --}}
                             </div>
 
                             @if((int)$input['company'] != 8 && (int)$input['company'] != 10)
@@ -180,7 +185,12 @@
 
                             <div class="row">
                                 <strong class="col s2 bg1">差出人２</strong>
-                                <p class="col s10">{{ $input['company_name2'] }}</p>
+                                {{-- Edit by IVS 08/01/2024 --}}
+                                {{-- <p class="col s10">{{ $input['company_name2'] }}</p> --}}
+                                @if ($input['company_name2'] == '')
+                                    <p class="col s10">ー</p>
+                                @endif
+                                {{-- End edit by IVS 08/01/2024 --}}
                             </div>
 
                             @if((int)$input['company'] != 8 && (int)$input['company'] != 10)

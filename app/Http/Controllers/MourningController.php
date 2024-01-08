@@ -924,7 +924,6 @@ class MourningController extends Controller
         // Edit by IVS 2023/12/26
         $setLogic = new SetLogicController();
         $setLogic->set($request);
-        // dd($input);
         // End Edit by IVS 2023/12/26
         \DB::beginTransaction();
         try {
@@ -1359,7 +1358,6 @@ class MourningController extends Controller
         }
 
         $input = $request->session()->get("form_input");
-
         // Edit by IVS 2023/12/01
         if((int)$input['classification'] != 7 || (int)$input['classification'] != 8){
             if ($input['company_attend1'] == 2) {
@@ -1373,12 +1371,17 @@ class MourningController extends Controller
             }else{
                 $input['company_telegram2_flg'] = "0";
             }
+            if((int)$input['telegram'] == 1 && (int)$input['floral_tribute'] == 1){
+                $input['company_telegram1_flg'] = "1";
+                $input['company_telegram2_flg'] = "1";
+            }
         }
         if (((int)$input['classification'] == 7 || (int)$input['classification'] == 8 ) && (int)$input['passed_away_relationship'] != 1) {
             $input['company_telegram1_flg'] = "1";
             $input['company_telegram2_flg'] = "1";
         }
         // End edit by IVS 2023/12/01
+        // dd($input);
 
         if (!$input) {
             return redirect()->action([MourningController::class, 'showManagerLogin']);
@@ -1394,7 +1397,6 @@ class MourningController extends Controller
         }
 
         $request->session()->put("form_input", $input);
-        // dd($input,"ccc");
         \DB::beginTransaction();
         try {
             $contactInfo = ContactInfo::find($input['id']);
@@ -1443,7 +1445,6 @@ class MourningController extends Controller
             \DB::commit();
         } catch (\Throwable $exception) {
             \DB::rollback();
-            dd($exception);
 //            abort(500, $exception);
         }
         return redirect()->action([MourningController::class, 'showGeneralAffairsFinished']);
@@ -1845,14 +1846,41 @@ class MourningController extends Controller
         ]);
     }
 
+
     function editManagerInformation(Request $request) {
-        $input = $request->all();
+        $input = $request->session()->get("form_input");
+        // Setlogic to manager edit
+        dd($input);
+        $setLogic = new SetLogicController();
+        $setLogic->set($input);
         \DB::beginTransaction();
         try {
             $contactInfo = ContactInfo::find($input['id']);
-            // dd($input);
+            if($input["entrant"] === '1'){
+                $contactInfo->fill([
+                    "entrant" => $input["entrant"],
+                    "related_employee_no" => $input["related_employee_no"],
+                    "membership_year" => $input["membership_year"],
+                    "related_name" => $input["related_name"],
+                    "related_kana" => $input["related_kana"],
+                    "classification" => $input["classification"],
+                    "company" => $input["company"],
+                    "member1" => $input["member1"],
+                    "member2" => $input["member2"],
+                    "passed_away_name" => $input["passed_away_name"],
+                    "passed_away_kana" => $input["passed_away_kana"],
+                    "passed_away_date" => $input["passed_away_date"],
+                    "passed_away_relationship" => $input["passed_away_relationship"],
+                    "entrant_employee_no" => $input["entrant_employee_no"],
+                    "entrant_name" => $input["entrant_name"],
+                    "entrant_kana" => $input["entrant_kana"],
+                    "entrant_classification" => $input["entrant_classification"],
+                    "entrant_company" => $input["entrant_company"],
+                    "entrant_member1" => $input["entrant_member1"],
+                    "entrant_member2" => $input["entrant_member2"],
+                ]);
+            }
             $contactInfo->fill([
-                "entrant" => $input["entrant"],
                 "related_employee_no" => $input["related_employee_no"],
                 "membership_year" => $input["membership_year"],
                 "related_name" => $input["related_name"],
@@ -1865,14 +1893,34 @@ class MourningController extends Controller
                 "passed_away_kana" => $input["passed_away_kana"],
                 "passed_away_date" => $input["passed_away_date"],
                 "passed_away_relationship" => $input["passed_away_relationship"],
-                // "update_user" => $input["related_employee_no"],
+                "entrant_employee_no" => $input["passed_away_relationship"],
             ]);
             $contactInfo->save();
-            // dd($contactInfo);
             \DB::commit();
         } catch (\Throwable $exception) {
             \DB::rollback();
         }
         return redirect()->action([MourningController::class, 'showManagerEdit']);
+    }
+
+    public function showEditManagerInformationConfirm(Request $request)
+    {
+        $input = $request->all();
+        // $request->session()->put("form_input", $input);
+        session()->push('form_input', $input);
+
+        // dd($request->session()->get("form_input"));
+        if (!$input) {
+            return redirect()->action([MourningController::class, 'showManagerEdit']);
+        } else {
+            return view("mourning.managerEditInformationConfirm",
+                [
+                    "input" => $input,
+                    'passedAwayRelationshipArray' => $this->passedAwayRelationship(),
+                    'classificationsArray' => $this->classifications(),
+                    'companiesArray' => $this->companies(),
+                ]
+            );
+        }
     }
 }

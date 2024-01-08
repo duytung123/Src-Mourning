@@ -147,7 +147,7 @@
                                 <div class="row">
                                     <div class="input-field col s12 m6">
                                         <input id="entrant_employee_no" name="entrant_employee_no" type="text" class="validate zen2half required" pattern="[0-9]{7}" maxlength="7" minlength="7"  @if(old('entrant_employee_no')) value="old('entrant_employee_no')" @endif @if($session['entrant_employee_no']) value="{{$session['entrant_employee_no']}}" @endif>
-                                        <label for="entrant_employee_no" class="@if(old('entrant_employee_no')) active @endif @if($session['entrant_employee_no'])  active @endif">社員番号<sup><i class="tiny material-icons">lens</i></sup></label>
+                                        <label for="entrant_employee_no" class="@if(old('entrant_employee_no')) active @endif @if($session['entrant_employee_no'])  active @endif">社員番号ccc<sup><i class="tiny material-icons">lens</i></sup></label>
                                     </div>
                                     @if ($errors->has('entrant_employee_no'))
                                         <div class="card section teal lighten-4 col s12">

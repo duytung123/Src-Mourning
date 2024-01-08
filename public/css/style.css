@@ -651,3 +651,30 @@ sup i.material-icons {
   justify-content: space-between;
   align-items: center;
 }
+.off {
+    display: none;
+}
+.hidden-entrants {
+    opacity: 0;
+    display: none;
+}
+
+.collapsible-header-2:hover {
+    cursor: pointer;
+  }
+.collapsible-header-2 {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+.collapsible-header-2 .toggle::after {
+    content: "━";
+    transform: rotate(180deg);
+}
+
+.active.collapsible-header-2 .toggle::after {
+    content: "╋";
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    transform: rotate(0deg);
+}
