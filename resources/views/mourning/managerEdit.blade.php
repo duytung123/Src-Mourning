@@ -912,7 +912,9 @@
                             <div class="row">
                                 <label for="company_name1" class="col s12 m2 text-small sender bg1">差出人１</label>
                                 {{-- <input type="text" name="company_name1" id="company_name1" form="general_affairs" class="col s12 m10 text-small" value="{{$session['company_name1']}}" placeholder="差出人名" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif required> --}}
-                                <input type="text" name="company_name1" id="company_name1" form="general_affairs" class="col s12 m10 text-small" placeholder="差出人名を入力" @if((int)$session['general_affairs_confirmation'] == 1 || (int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1 && (int)$session['condolence'] !=2) disabled @endif required value="@if((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1 && (int)$session['condolence'] !=2)ー@else{{ $session['company_name1'] }}@endif">
+                                <input type="text" name="company_name1" id="copany_name1" form="general_affairs" class="col s12 m10 text-small" placeholder="差出人名を入力"
+                                @if((int)$session['general_affairs_confirmation'] == 1 || ((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1 && (int)$session['company_condolence_money1_flg'] == 1) || ((int)$session['classification'] == 7 && (int)$session['chief_mourner'] == 0) || ((int)$session['classification'] == 8 && (int)$session['chief_mourner'] == 0) || ((int)$session['classification'] == 7 && (int)$session['chief_mourner'] == 1) || ((int)$session['classification'] == 8 && (int)$session['chief_mourner'] == 1) || ((int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] == 6) || ((int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] == 7)) disabled @endif required
+                                value="@if((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1 && (int)$session['company_condolence_money1_flg'] == 1 || (int)$session['classification'] == 7 && (int)$session['chief_mourner'] == 0 || ((int)$session['classification'] == 8 && (int)$session['chief_mourner'] == 0) || ((int)$session['classification'] == 7 && (int)$session['chief_mourner'] == 1) || ((int)$session['classification'] == 8 && (int)$session['chief_mourner'] == 1)|| ((int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] == 6) || ((int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] == 7))ー@else{{ $session['company_name1'] }}@endif">
                             </div>
                             <div class="row" data-company-attend1="{{$session['company_attend1']}}">
 
@@ -945,7 +947,7 @@
                                         <span style="opacity: 0" id="display-telegram1"><span>1</span> 通</span>
                                     @else
                                         @if((int)$session['telegram'] == 1)
-                                            <span>0</span> 通ccc
+                                            <span>0</span> 通
                                         @else
                                             <span id="js_company_attend1">{{$session['company_telegram1']}}</span> <span id="hiddenMoney">通</span>
                                         @endif
@@ -968,7 +970,7 @@
                                         <span class="col s12 m10 text-small">{{$session['social_name1']}}</span>
                                     </div>
                                 @endif
-                                <strong class="col s4">弔慰金 </strong>
+                                <strong class="col s4">弔慰金</strong>
 
                                 <strong class="col s78 wb deep-purple-text">@if((int)$session['company_condolence_money1_flg'] == 1)
                                         <i class="material-icons">remove</i>
@@ -981,7 +983,9 @@
                             <div class="row">
                                 <label for="company_name2" class="col s12 m2 text-small sender bg1">差出人２</label>
                                 {{-- <input type="text" name="company_name2" id="company_name2" form="general_affairs" class="col s12 m10 text-small" value="{{$session['company_name2']}}" placeholder="差出人名" @if((int)$session['general_affairs_confirmation'] == 1) disabled @endif required> --}}
-                                <input type="text" name="company_name2" id="company_name2" form="general_affairs" class="col s12 m10 text-small" placeholder="差出人名を入力" @if((int)$session['general_affairs_confirmation'] == 1 || ((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1 && (int)$session['condolence'] !=2)) disabled @endif required value=" @if ((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1 && (int)$session['condolence'] !=2) ー @else {{ $session['company_name2'] }} @endif ">
+                                <input type="text" name="company_name2" id="copany_name2" form="general_affairs" class="col s12 m10 text-small" placeholder="差出人名を入力"
+                                @if((int)$session['general_affairs_confirmation'] == 1 || ((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1 && (int)$session['company_condolence_money2_flg'] == 1) || ((int)$session['classification'] == 7 && (int)$session['chief_mourner'] == 0) || ((int)$session['classification'] == 8 && (int)$session['chief_mourner'] == 0) || ((int)$session['classification'] == 7 && (int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] != 1) || ((int)$session['classification'] == 8 && (int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] != 1) || ((int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] == 7)) disabled @endif required
+                                value="@if((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1 && (int)$session['company_condolence_money2_flg'] == 1 || (int)$session['classification'] == 7 && (int)$session['chief_mourner'] == 0 || ((int)$session['classification'] == 8 && (int)$session['chief_mourner'] == 0)|| ((int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] == 7) || ((int)$session['classification'] == 7 && (int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] != 1) || ((int)$session['classification'] == 8 && (int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] != 1))ー@else{{ $session['company_name2'] }}@endif">
                             </div>
                             <div class="row ">
                                 @if((int)$session['general_affairs_confirmation'] == 1)
@@ -1077,12 +1081,18 @@
                     <input type="hidden" name="company" value="{{ $session['company'] }}">
                     <input type="hidden" name="telegram" value="{{ $session['telegram'] }}">
                     <input type="hidden" name="floral_tribute" value="{{ $session['floral_tribute'] }}">
-                    {{-- <input type="hidden" name="company" value="{{ $session['company'] }}"> --}}
                     <input type="hidden" name="status" value="3">
                     @if ((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1)
                         <input type="hidden" value = "" name = "company_name1">
                         <input type="hidden" value = "" name = "company_name2">
                     @endif
+                    @if ((int)$session['general_affairs_confirmation'] == 1 || ((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1 && (int)$session['company_condolence_money1_flg'] == 1) || ((int)$session['classification'] == 7 && (int)$session['chief_mourner'] == 0) || ((int)$session['classification'] == 8 && (int)$session['chief_mourner'] == 0) || ((int)$session['classification'] == 7 && (int)$session['chief_mourner'] == 1 ) || ((int)$session['classification'] == 8 && (int)$session['chief_mourner'] == 1) || ((int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] == 6) || ((int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] == 7))
+                        <input type="hidden" name="company_name1" value="">
+                    @endif
+                    @if((int)$session['floral_tribute'] == 1 && (int)$session['telegram'] == 1 && (int)$session['company_condolence_money2_flg'] == 1 || (int)$session['classification'] == 7 && (int)$session['chief_mourner'] == 0 || ((int)$session['classification'] == 8 && (int)$session['chief_mourner'] == 0)|| ((int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] == 7) || ((int)$session['classification'] == 7 && (int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] != 1) || ((int)$session['classification'] == 8 && (int)$session['chief_mourner'] == 1 && (int)$session['passed_away_relationship'] != 1))
+                        <input type="hidden" name="company_name2" value="">
+                    @endif
+
                     <div class="row">
                         <div class="col s12 m6">
                             <label>
@@ -1524,7 +1534,21 @@
                 console.log(document.getElementById('entrant_employee_no'));
                 document.getElementById('entrant_employee_no').removeAttribute('required');
             }
+
+
     }
+    $(function(){
+        var valEntrant = document.querySelector('input[name="entrant"]').value;
+        if (valEntrant === '1') {
+            document.querySelector('select[id="passed_away_relationship"] option[value="1"]').disabled = false;
+        }
+        else{
+            document.querySelector('select[id="passed_away_relationship"] option[value="1"]').disabled = true;
+            if(valRelationship === '1'){
+                $("#passed_away_relationship").val('')
+            }
+        }
+    })
     </script>
      {{-- End edit by IVS 23/11/2023 --}}
 @endsection

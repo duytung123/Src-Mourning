@@ -212,7 +212,7 @@
 
                                 <div class="row">
                                     <div class="input-field col s12 m6">
-                                        <input id="entrant_member1" name="entrant_member1" type="text" class="validate required" placeholder="店/部/事業所を自由入力" @if(old('entrant_member1')) value="old('entrant_member1')" @endif @if(array_key_exists('entrant_member1',$session )) value="{{$session['entrant_member1']}}" @endif required>
+                                        <input id="entrant_member1" name="entrant_member1" type="text" class="validate required" placeholder="店/部/事業所を自由入力" @if(old('entrant_member1')) value="old('entrant_member1')" @endif @if(array_key_exists('entrant_member1',$session )) value="{{$session['entrant_member1']}}" @endif>
                                         <label for="entrant_member1">所属①<sup><i class="tiny material-icons">lens</i></sup></label>
                                     </div>
                                     @if ($errors->has('entrant_member1'))
@@ -223,7 +223,7 @@
                                         </div>
                                     @endif
                                     <div class="input-field col s12 m6">
-                                        <input id="entrant_member2" name="entrant_member2" type="text" class="validate required" placeholder="ｼｮｯﾌﾟ/課/室/担当を自由入力" @if(old('entrant_member2')) value="old('entrant_member2')" @endif @if(array_key_exists('entrant_member2',$session)) value="{{$session['entrant_member2']}}" @endif required>
+                                        <input id="entrant_member2" name="entrant_member2" type="text" class="validate required" placeholder="ｼｮｯﾌﾟ/課/室/担当を自由入力" @if(old('entrant_member2')) value="old('entrant_member2')" @endif @if(array_key_exists('entrant_member2',$session)) value="{{$session['entrant_member2']}}" @endif>
                                         <label for="entrant_member2">所属②<sup><i class="tiny material-icons">lens</i></sup></label>
                                     </div>
                                     @if ($errors->has('entrant_member2'))
@@ -298,7 +298,7 @@
         <!-- 社内親族 -->
         <section class="section card grey lighten-5">
             <div class="card-content">
-                <span class="card-title">社内親族</span>
+                <span class="card-title">社内親族について</span>
                 <div class="divider"></div>
                 <div class="section">
                     <div class="row">
@@ -492,35 +492,32 @@
                 <div class="section">
 
                     <div class="row">
-                        <p class="col s12">弔問を辞退します</p>
                         <label class="col">
-                            <input type="radio" name="condolence" value="1" @if(old('condolence') == '1') checked @endif @if(array_key_exists('condolence', $session)) @if($session['condolence'] == '1') checked @endif @endif>
+                            <input type="radio" name="condolence" value="2" @if(old('condolence') == '2') checked @endif @if(array_key_exists('condolence', $session)) @if($session['condolence'] == '2') checked @endif @endif>
                             <span>弔問を受ける</span>
                         </label>
                         <label class="col">
-                            <input type="radio" name="condolence" value="2" @if(old('condolence') == '2') checked @endif @if(array_key_exists('condolence', $session)) @if($session['condolence'] == '2') checked @endif @endif>
+                            <input type="radio" name="condolence" value="1" @if(old('condolence') == '1') checked @endif @if(array_key_exists('condolence', $session)) @if($session['condolence'] == '1') checked @endif @endif>
                             <span>弔問を辞退する</span>
                         </label>
                     </div>
                     <div class="row">
-                        <p class="col s12">供花を辞退します</p>
                         <label class="col">
-                            <input type="radio" name="floral_tribute" value="1" @if(old('floral_tribute') == '1') checked @endif @if(array_key_exists('floral_tribute', $session)) @if($session['floral_tribute'] == '1') checked @endif @endif>
+                            <input type="radio" name="floral_tribute" value="2" @if(old('floral_tribute') == '2') checked @endif @if(array_key_exists('floral_tribute', $session)) @if($session['floral_tribute'] == '2') checked @endif @endif>
                             <span>供花を受ける</span>
                         </label>
                         <label class="col">
-                            <input type="radio" name="floral_tribute" value="2" @if(old('floral_tribute') == '2') checked @endif @if(array_key_exists('floral_tribute', $session)) @if($session['floral_tribute'] == '2') checked @endif @endif>
+                            <input type="radio" name="floral_tribute" value="1" @if(old('floral_tribute') == '1') checked @endif @if(array_key_exists('floral_tribute', $session)) @if($session['floral_tribute'] == '1') checked @endif @endif>
                             <span>供花を辞退する</span>
                         </label>
                     </div>
                     <div class="row">
-                        <p class="col s12">弔電を辞退します</p>
                         <label class="col">
-                            <input type="radio" name="telegram" value="1" @if(old('telegram') == '1') checked @endif @if(array_key_exists('telegram', $session)) @if($session['telegram'] == '1') checked @endif @endif>
+                            <input type="radio" name="telegram" value="2" @if(old('telegram') == '2') checked @endif @if(array_key_exists('telegram', $session)) @if($session['telegram'] == '2') checked @endif @endif>
                             <span>弔電を受ける</span>
                         </label>
                         <label class="col">
-                            <input type="radio" name="telegram" value="2" @if(old('telegram') == '2') checked @endif @if(array_key_exists('telegram', $session)) @if($session['telegram'] == '2') checked @endif @endif>
+                            <input type="radio" name="telegram" value="1" @if(old('telegram') == '1') checked @endif @if(array_key_exists('telegram', $session)) @if($session['telegram'] == '1') checked @endif @endif>
                             <span>弔電を辞退する</span>
                         </label>
                     </div>
