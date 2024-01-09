@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-
+use Auth;
 class AuthenticateAdmin
 {
     /**
@@ -23,6 +23,12 @@ class AuthenticateAdmin
     public function handle(Request $request, Closure $next)
     {
         $error = $request->session()->get('error');
-        return response()->view('mourning.userAuthenticate' , ['error' => $error]);
+        $checkLogin = $request->session()->get('logged');
+        if ($checkLogin) {
+            return $next($request);
+        }else{
+            return response()->view('mourning.userAuthenticate' , ['error' => $error]);
+        }
+
     }
 }

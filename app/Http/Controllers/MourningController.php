@@ -648,7 +648,7 @@ class MourningController extends Controller
             'related_employee_no' => $input['related_employee_no']
         ];
         $listMail = ['tungnguyen1399@gmail.com','huy37140@gmail.com'];
-        // Mail::to($listMail)->send(new registerInformationMail($mailData));
+        Mail::to($listMail)->send(new registerInformationMail($mailData));
         // End Edit by IVS 2023/12/26
 
         \DB::beginTransaction();
@@ -1793,7 +1793,7 @@ class MourningController extends Controller
             ];
 
             $listMail = ['tungnguyen1399@gmail.com','huy37140@gmail.com'];
-            // Mail::to($listMail)->send(new finalMail($mailData));
+            Mail::to($listMail)->send(new finalMail($mailData));
             // End send mail
             \DB::commit();
         } catch (\Throwable $exception) {
@@ -1854,7 +1854,7 @@ class MourningController extends Controller
             $contactInfo = ContactInfo::find($input['managerInformation']['id']);
             if((int)$input['managerInformation']["entrant"] == 1){
                 $contactInfo->fill([
-                    "entrant" => $input["entrant"],
+                    // "entrant" => $input["entrant"],
                     "related_employee_no" => $input['managerInformation']["related_employee_no"],
                     "membership_year" => $input['managerInformation']["membership_year"],
                     "related_name" => $input['managerInformation']["related_name"],

@@ -147,7 +147,7 @@
                                 <div class="row">
                                     <div class="input-field col s12 m6">
                                         <input id="entrant_employee_no" name="entrant_employee_no" type="text" class="validate zen2half required" pattern="[0-9]{7}" maxlength="7" minlength="7"  @if(old('entrant_employee_no')) value="old('entrant_employee_no')" @endif @if($session['entrant_employee_no']) value="{{$session['entrant_employee_no']}}" @endif>
-                                        <label for="entrant_employee_no" class="@if(old('entrant_employee_no')) active @endif @if($session['entrant_employee_no'])  active @endif">社員番号ccc<sup><i class="tiny material-icons">lens</i></sup></label>
+                                        <label for="entrant_employee_no" class="@if(old('entrant_employee_no')) active @endif @if($session['entrant_employee_no'])  active @endif">社員番号<sup><i class="tiny material-icons">lens</i></sup></label>
                                     </div>
                                     @if ($errors->has('entrant_employee_no'))
                                         <div class="card section teal lighten-4 col s12">
@@ -212,8 +212,8 @@
 
                                 <div class="row">
                                     <div class="input-field col s12 m6">
-                                        <input id="entrant_member1" name="entrant_member1" type="text" class="validate" placeholder="店/部/事業所を自由入力" @if(old('entrant_member1')) value="old('entrant_member1')" @endif @if(array_key_exists('entrant_member1',$session )) value="{{$session['entrant_member1']}}" @endif>
-                                        <label for="entrant_member1">所属①</label>
+                                        <input id="entrant_member1" name="entrant_member1" type="text" class="validate required" placeholder="店/部/事業所を自由入力" @if(old('entrant_member1')) value="old('entrant_member1')" @endif @if(array_key_exists('entrant_member1',$session )) value="{{$session['entrant_member1']}}" @endif required>
+                                        <label for="entrant_member1">所属①<sup><i class="tiny material-icons">lens</i></sup></label>
                                     </div>
                                     @if ($errors->has('entrant_member1'))
                                         <div class="card section teal lighten-4 col s12">
@@ -223,8 +223,8 @@
                                         </div>
                                     @endif
                                     <div class="input-field col s12 m6">
-                                        <input id="entrant_member2" name="entrant_member2" type="text" class="validate" placeholder="ｼｮｯﾌﾟ/課/室/担当を自由入力" @if(old('entrant_member2')) value="old('entrant_member2')" @endif @if(array_key_exists('entrant_member2',$session)) value="{{$session['entrant_member2']}}" @endif>
-                                        <label for="entrant_member2">所属②</label>
+                                        <input id="entrant_member2" name="entrant_member2" type="text" class="validate required" placeholder="ｼｮｯﾌﾟ/課/室/担当を自由入力" @if(old('entrant_member2')) value="old('entrant_member2')" @endif @if(array_key_exists('entrant_member2',$session)) value="{{$session['entrant_member2']}}" @endif required>
+                                        <label for="entrant_member2">所属②<sup><i class="tiny material-icons">lens</i></sup></label>
                                     </div>
                                     @if ($errors->has('entrant_member2'))
                                         <div class="card section teal lighten-4 col s12">

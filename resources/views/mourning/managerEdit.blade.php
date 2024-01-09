@@ -130,15 +130,21 @@
                 <div id = 'collapsible-body-infor' style="display: block" class="section text-small collapsible-body grey lighten-5 bd1">
                     <div class="row res-block">
                         <strong class="col s12 m4">入力者</strong>
-                        {{-- <p class="col s12 m8 wb"><input type="text" name="entrant" value="{{ $entrantArray[$session['entrant']] }}"></p> --}}
-                        <label class="col">
+                        <p class="col s12 m8 wb">{{ $entrantArray[$session['entrant']] }}</p>
+                        {{-- <label class="col">
                             <input onclick="checkEntrant()" type="radio" name="entrant" class="is-toggle" data-tgt="js_entrant" data-state="false" value="0" @if (old('entrant') == '0' || (int)$session['entrant'] == '0' || ((old('entrant') != '1' && (int)$session['entrant'] != '1'))) checked @endif required>
                             <span>本人(弔事当事者)</span>
                         </label>
                         <label class="col">
                             <input onclick="checkEntrant()" type="radio" name="entrant" class="is-toggle" data-tgt="js_entrant" data-state="true" value="1" @if (old('entrant') == '1' || (int)$session['entrant'] == '1') checked @endif>
                             <span>代理者の入力</span>
-                        </label>
+                        </label> --}}
+                        @if ($session['entrant'] === 1)
+                            <input type="hidden" name="entrant" value="1">
+                        @else
+                            <input type="hidden" name="entrant" value="0">
+                        @endif
+
                     </div>
                     <div class="divider"></div>
                     <div class="row res-block">
@@ -149,7 +155,7 @@
                     <div class="divider"></div>
                     <div class="row res-block">
                         <strong class="col s12 m4">弔事当事者の入社年度</strong>
-                        <p class="col s12 m8 wb"> <input type="text" name="membership_year" value="{{ $session['membership_year'] }}">年</p>
+                        <p class="col s12 m8 wb"> <input type="text" name="membership_year" value="{{ $session['membership_year'] }}"></p>
                     </div>
                     <div class="divider"></div>
                     <div class="row res-block">
@@ -260,17 +266,17 @@
                         <span>代理者</span>
                             <div class="row res-block">
                                 <strong class="col s12 m4">代理者の社員番号<sup><i class="tiny material-icons">lens</i></sup></strong>
-                                <p class="col s12 m8 wb"><input type="text" name="entrant_employee_no" id="entrant_employee_no" value=""></p>
+                                <p class="col s12 m8 wb"><input type="text" name="entrant_employee_no" id="entrant_employee_no" value="{{ $session['entrant_employee_no'] }}"></p>
                             </div>
                             <div class="divider"></div>
                             <div class="row res-block">
                                 <strong class="col s12 m4">氏名<sup><i class="tiny material-icons">lens</i></sup></strong>
-                                <p class="col s12 m8 wb"><input type="text" name="entrant_name" id="entrant_name" value=""></p>
+                                <p class="col s12 m8 wb"><input type="text" name="entrant_name" id="entrant_name" value="{{ $session['entrant_name'] }}"></p>
                             </div>
                             <div class="divider"></div>
                             <div class="row res-block">
                                 <strong class="col s12 m4">フリガナ<sup><i class="tiny material-icons">lens</i></sup></strong>
-                                <p class="col s12 m8 wb"><input type="text" name="entrant_kana" id="entrant_kana" value=""></p>
+                                <p class="col s12 m8 wb"><input type="text" name="entrant_kana" id="entrant_kana" value="{{ $session['entrant_kana'] }}"></p>
                             </div>
                             <div class="divider"></div>
                             <div class="row res-block classification-manager">
@@ -291,12 +297,12 @@
                             <div class="divider"></div>
                             <div class="row res-block">
                                 <strong class="col s12 m4">所属①<sup><i class="tiny material-icons">lens</i></sup></strong>
-                                <p class="col s12 m8 wb"><input type="text" name="entrant_member1" id="entrant_member1" value=""></p>
+                                <p class="col s12 m8 wb"><input type="text" name="entrant_member1" id="entrant_member1" value="{{ $session['entrant_member1'] }}"></p>
                             </div>
                             <div class="divider"></div>
                             <div class="row res-block">
                                 <strong class="col s12 m4">所属②<sup><i class="tiny material-icons">lens</i></sup></strong>
-                                <p class="col s12 m8 wb"><input type="text" name="entrant_member2" id="entrant_member2" value=""></p>
+                                <p class="col s12 m8 wb"><input type="text" name="entrant_member2" id="entrant_member2" value="{{ $session['entrant_member2'] }}"></p>
                             </div>
                         <div class="divider"></div>
                     </div>
@@ -1031,7 +1037,7 @@
 
     <input type="hidden" name="accordion-state" id="accordion-state" value="">
     <!-- 総務担当、支部委員長、所属長 -->
-    <div class="row mt50 flex"><i class="material-icons">lens</i> <strong>必須項目cc</strong></div>
+    <div class="row mt50 flex"><i class="material-icons">lens</i> <strong>必須項目</strong></div>
     <ul class="collapsible collapsible-custom" id="js-manager-content">
 
 {{--        <!-- 総務担当／秘書室 確認入力 --> --}}

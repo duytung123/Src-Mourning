@@ -108,7 +108,7 @@ Route::group(['middleware'=>'basic.admin.auth'], function(){
     // 管理画面、一覧
     //Route::get('/admin/list/error', 'App\Http\Controllers\AdminListController@showAdminList')->name('admin.list.error');
     Route::post('/admin/list', 'App\Http\Controllers\AdminListController@postUserAuthenticate')->name('postUserAuthenticate');
-    Route::get('/admin/list', 'App\Http\Controllers\AdminListController@showAdminList')->middleware(['auth.admin.list'])->name('admin.list');
+    Route::get('/admin/list', 'App\Http\Controllers\AdminListController@postUserAuthenticate')->middleware(['auth.admin.list'])->name('admin.list');
     Route::get('/admin/list/{page}', 'App\Http\Controllers\AdminListController@showAdminList')->name('admin.list.page');
 
     // 管理画面、検索結果
